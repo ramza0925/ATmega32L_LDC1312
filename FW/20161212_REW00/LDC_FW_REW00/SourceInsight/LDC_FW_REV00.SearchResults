@@ -1,0 +1,10 @@
+---- OFFSET_MODE Matches (9 in 0 files) ----
+LDC_FW_REW00.c:	OFFSET_MODE = 1,
+LDC_FW_REW00.c:	if(opMode != DEBUG_MODE && opMode != OFFSET_MODE){
+LDC_FW_REW00.c:				opMode = OFFSET_MODE;
+LDC_FW_REW00.c:			else if(opMode == OFFSET_MODE){
+LDC_FW_REW00.c:			else if(opMode == OFFSET_MODE){
+LDC_FW_REW00.c:			else if(opMode == OFFSET_MODE){
+LDC_FW_REW00.c:			else if(opMode == OFFSET_MODE){
+LDC_FW_REW00.c:			if(opMode == OFFSET_MODE){
+LDC_FW_REW00.c:			else if(opMode == OFFSET_MODE){
