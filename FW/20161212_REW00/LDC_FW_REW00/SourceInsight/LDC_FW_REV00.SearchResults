@@ -1,10 +1,3 @@
----- OFFSET_MODE Matches (9 in 0 files) ----
-LDC_FW_REW00.c:	OFFSET_MODE = 1,
-LDC_FW_REW00.c:	if(opMode != DEBUG_MODE && opMode != OFFSET_MODE){
-LDC_FW_REW00.c:				opMode = OFFSET_MODE;
-LDC_FW_REW00.c:			else if(opMode == OFFSET_MODE){
-LDC_FW_REW00.c:			else if(opMode == OFFSET_MODE){
-LDC_FW_REW00.c:			else if(opMode == OFFSET_MODE){
-LDC_FW_REW00.c:			else if(opMode == OFFSET_MODE){
-LDC_FW_REW00.c:			if(opMode == OFFSET_MODE){
-LDC_FW_REW00.c:			else if(opMode == OFFSET_MODE){
+---- gain_temp Matches (2 in 1 files) ----
+LDC_FW_REW00.c:uint16_t config, divider, settlecount, rcount, error_conf, mux_conf, i_drive, status, offset, gain, gain_temp, debugPage;
+LDC_FW_REW00.c:	gain_temp = gain;

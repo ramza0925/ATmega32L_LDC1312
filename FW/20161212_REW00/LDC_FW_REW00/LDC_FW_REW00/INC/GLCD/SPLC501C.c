@@ -1,3 +1,5 @@
+#include <avr/pgmspace.h>
+
 #include "SPLC501C.h"
 #include "font5x7.h"
 //#include "font10x16.h"
@@ -124,7 +126,7 @@ void GLCD_WriteChar5x7(char charCode)
 	unsigned char fontCollumn;
 	
 	for(fontCollumn = 0; fontCollumn < FONT_WIDTH; fontCollumn++)
-	  GLCD_WriteData(font5x7[((charCode- FONT_OFFSET) * FONT_WIDTH) + fontCollumn]);
+	  GLCD_WriteData(pgm_read_byte(&font5x7[((charCode- FONT_OFFSET) * FONT_WIDTH) + fontCollumn]));
 	GLCD_WriteData(0);
 }
 
@@ -133,7 +135,7 @@ void GLCD_InvWriteChar5x7(char charCode)
 	unsigned char fontCollumn;
 	
 	for(fontCollumn = 0; fontCollumn < FONT_WIDTH; fontCollumn++)
-	  GLCD_WriteData(~font5x7[((charCode- FONT_OFFSET) * FONT_WIDTH) + fontCollumn]);
+		GLCD_WriteData(~pgm_read_byte(&font5x7[((charCode- FONT_OFFSET) * FONT_WIDTH) + fontCollumn]));
 	GLCD_WriteData(0);
 }
 //-------------------------------------------------------------------------------------------------
@@ -162,34 +164,58 @@ void GLCD_InvWriteString5x7(char * string)
 // Return value : none
 //-------------------------------------------------------------------------------------------------
 void GLCD_WriteChar10x16(char charCode) {
-    unsigned int fontCollumn;
-    unsigned int x,y;
+    unsigned char fontCollumn;
+    unsigned char x,y;
 
     y = glcd_y;
     x = glcd_x;
 	
     for (fontCollumn = 0; fontCollumn < FONT_WIDTH10x16; fontCollumn+=2) {
         GLCD_GoTo(x,y);
-        GLCD_WriteData(font10x16[((charCode - FONT_OFFSET10x16) * FONT_WIDTH10x16) + fontCollumn]);
+        GLCD_WriteData(pgm_read_byte(&font10x16[((charCode - FONT_OFFSET10x16) * FONT_WIDTH10x16) + fontCollumn]));
         GLCD_GoTo(x,y+1);
-        GLCD_WriteData(font10x16[((charCode - FONT_OFFSET10x16) * FONT_WIDTH10x16) + fontCollumn + 1]);
+        GLCD_WriteData(pgm_read_byte(&font10x16[((charCode - FONT_OFFSET10x16) * FONT_WIDTH10x16) + fontCollumn + 1]));
         x++;
     }
     GLCD_WriteData(0);
     GLCD_GoTo(x,y);
-}*/
+}
+
+void GLCD_InvWriteChar10x16(char charCode) {
+    unsigned char fontCollumn;
+    unsigned char x,y;
+
+    y = glcd_y;
+    x = glcd_x;
+	
+    for (fontCollumn = 0; fontCollumn < FONT_WIDTH10x16; fontCollumn+=2) {
+        GLCD_GoTo(x,y);
+        GLCD_WriteData(~pgm_read_byte(&font10x16[((charCode - FONT_OFFSET10x16) * FONT_WIDTH10x16) + fontCollumn]));
+        GLCD_GoTo(x,y+1);
+        GLCD_WriteData(~pgm_read_byte(&font10x16[((charCode - FONT_OFFSET10x16) * FONT_WIDTH10x16) + fontCollumn + 1]));
+        x++;
+    }
+    GLCD_WriteData(0);
+    GLCD_GoTo(x,y);
+}
 //-------------------------------------------------------------------------------------------------
 // Function : GLCD_WriteString10x16
 // Arguments : pointer to null-terminated ASCII string
 // Return value : none
 //-------------------------------------------------------------------------------------------------
-/*
+
 void GLCD_WriteString10x16(char * string) {
     while (*string) {
         GLCD_WriteChar10x16(*string++);
     }
-}*/
+}
 
+void GLCD_InvWriteString10x16(char * string) {
+    while (*string) {
+        GLCD_InvWriteChar10x16(*string++);
+    }
+}
+*/
 //-------------------------------------------------------------------------------------------------
 // Function : GLCD_WriteChar10x16
 // Artuments : Char ASCII code
@@ -204,11 +230,11 @@ void GLCD_WriteChar19x24(char charCode) {
 	
     for (fontCollumn = 1; fontCollumn < FONT_WIDTH19x24; fontCollumn+=3) {
         GLCD_GoTo(x,y);
-        GLCD_WriteData(font19x24[((charCode - FONT_OFFSET19x24) * FONT_WIDTH19x24) + fontCollumn]);
+        GLCD_WriteData(pgm_read_byte(&font19x24[((charCode - FONT_OFFSET19x24) * FONT_WIDTH19x24) + fontCollumn]));
         GLCD_GoTo(x,y+1);
-        GLCD_WriteData(font19x24[((charCode - FONT_OFFSET19x24) * FONT_WIDTH19x24) + fontCollumn + 1]);
+        GLCD_WriteData(pgm_read_byte(&font19x24[((charCode - FONT_OFFSET19x24) * FONT_WIDTH19x24) + fontCollumn + 1]));
         GLCD_GoTo(x,y+2);
-        GLCD_WriteData(font19x24[((charCode - FONT_OFFSET19x24) * FONT_WIDTH19x24) + fontCollumn + 2]);
+        GLCD_WriteData(pgm_read_byte(&font19x24[((charCode - FONT_OFFSET19x24) * FONT_WIDTH19x24) + fontCollumn + 2]));
         x++;
     }
     GLCD_WriteData(0);

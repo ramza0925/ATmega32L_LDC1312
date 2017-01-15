@@ -2,11 +2,12 @@
 // sterowanie w jezyku C od podstaw
 // Plik : font5x7.h
 // Autor : Rados³aw Kwiecie?
+#include <avr/pgmspace.h>
 
 #define FONT_OFFSET 32
 #define FONT_WIDTH	5
 
-const unsigned char font5x7[] = {
+const unsigned char font5x7[] PROGMEM = {
 0x00, 0x00, 0x00, 0x00, 0x00,// (spacja)
 0x00, 0x00, 0x5F, 0x00, 0x00,// !
 0x00, 0x07, 0x00, 0x07, 0x00,// "

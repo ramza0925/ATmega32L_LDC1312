@@ -19,20 +19,20 @@ void SleepMode_Control(uint16_t mode){
 		Set_Config(tmp&~SLEEP_MODE_EN);
 }
 
-void LDC_Init(uint16_t offset){
+void LDC_Init(uint16_t offset, uint16_t gain){
 	I2C_Init();													//I2C Init
 	SleepMode_Control(SLEEP_MODE_EN);							//설정 전 슬립모드 시작
 	//채널 및 클럭 설정
-	Set_Config(ACTIVE_CHAN_CH0|RP_OVERRIDE_EN|SENSOR_ACTIVATE_LOW|AUTO_AMP_DIS|REF_CLK_SRC_IN|INTB_DIS|HIGH_CURRENT_DRV_DIS);
+	Set_Config(ACTIVE_CHAN_CH0|RP_OVERRIDE_EN|SENSOR_ACTIVATE_LOW|AUTO_AMP_DIS|REF_CLK_SRC_IN|INTB_EN|HIGH_CURRENT_DRV_DIS);
 	Set_Divider(CH0, FIN_DIVIDER, FREF_DIVIDER);				//클럭 분배 설정 FIN_DIVIDER = 0x0002, FREF_DIVIDER = 0x000A
 	Set_RCount(CH0, RCOUNT);									//변환 시간 설정 RCount  = 0x04d6
 	Set_SettleCount(CH0,SETTLECOUNT);							//안정화 시간 설정Settle Count = 0x000A
 	//오류 보고 환경 설정
-	Set_Error_Config(UR_ERR2OUT_DIS|OR_ERR2OUT_DIS|WD_ERR2OUT_DIS|AH_ERR2OUT_DIS|AL_ERR2OUT_DIS
-						|UR_ERR2INT_DIS|OR_ERR2INT_DIS|WD_ERR2INT_DIS|AH_ERR2INT_DIS|AL_ERR2INT_DIS|ZC_ERR2INT_DIS|DRDY_2INT_DIS);
+	Set_Error_Config(UR_ERR2OUT_DIS|OR_ERR2OUT_DIS|WD_ERR2OUT_EN|AH_ERR2OUT_DIS|AL_ERR2OUT_DIS
+						|UR_ERR2INT_DIS|OR_ERR2INT_DIS|WD_ERR2INT_EN|AH_ERR2INT_DIS|AL_ERR2INT_DIS|ZC_ERR2INT_DIS|DRDY_2INT_DIS);
 	Set_MUX(DEGHITCH_3R3M);										//채널 동작 설정
 	Set_IDrive(CH0,18,0);										//구동 전류 설정
-	Set_Gain(OUTPUT_GAIN_4);									//출력 이득 설정
+	Set_Gain(gain);												//출력 이득 설정
 	if(offset != 0xFFFF) Set_Offset(CH0,offset);
 	SleepMode_Control(SLEEP_MODE_DIS);
 }

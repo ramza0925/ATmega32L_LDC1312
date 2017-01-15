@@ -204,13 +204,13 @@
 #define CH3							3
 
 #define FIN_DIVIDER					0x0002
-#define FREF_DIVIDER				0x000A
+#define FREF_DIVIDER				0x0004
 #define SETTLECOUNT					0x000A
 #define RCOUNT						0x04D6
 #define OFFSET_POINT				0xD8EF
 
 
-void LDC_Init(uint16_t offset);
+void LDC_Init(uint16_t offset, uint16_t gain);
 void Set_Config(uint16_t conf);
 uint16_t Get_Config();
 uint16_t Get_Status();
