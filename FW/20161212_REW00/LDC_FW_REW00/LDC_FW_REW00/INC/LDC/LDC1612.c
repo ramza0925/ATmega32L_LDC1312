@@ -1,4 +1,4 @@
-#include "LDC1312.h"
+#include "LDC1612.h"
 
 //#define DEBUG
 
@@ -19,7 +19,7 @@ void SleepMode_Control(uint16_t mode){
 		Set_Config(tmp&~SLEEP_MODE_EN);
 }
 
-void LDC_Init(uint16_t offset, uint16_t gain){
+void LDC_Init(uint16_t offset){
 	I2C_Init();													//I2C Init
 	SleepMode_Control(SLEEP_MODE_EN);							//설정 전 슬립모드 시작
 	//채널 및 클럭 설정
@@ -32,7 +32,7 @@ void LDC_Init(uint16_t offset, uint16_t gain){
 						|UR_ERR2INT_DIS|OR_ERR2INT_DIS|WD_ERR2INT_EN|AH_ERR2INT_DIS|AL_ERR2INT_DIS|ZC_ERR2INT_DIS|DRDY_2INT_DIS);
 	Set_MUX(DEGHITCH_3R3M);										//채널 동작 설정
 	Set_IDrive(CH0,18,0);										//구동 전류 설정
-	Set_Gain(gain);												//출력 이득 설정
+	//Set_Gain(gain);												//출력 이득 설정
 	if(offset != 0xFFFF) Set_Offset(CH0,offset);
 	SleepMode_Control(SLEEP_MODE_DIS);
 }
@@ -115,7 +115,7 @@ uint16_t Get_Gain(){
 }
 
 uint16_t Get_Data(uint8_t ch){
-	return Read_Data(DATA_CH0 + ch);
+	return Read_Data(DATA_CH0_MSB + ch);
 }
 
 void Set_Offset(uint8_t ch, uint16_t offset){

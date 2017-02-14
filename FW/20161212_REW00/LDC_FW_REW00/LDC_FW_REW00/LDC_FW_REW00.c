@@ -18,7 +18,7 @@
 #include "INC/AD5421/AD5421.h"
 #include "INC/GLCD/graphic.h"
 #include "INC/GLCD/SPLC501C.h"
-#include "INC/LDC1312/LDC1312.h"
+#include "INC/LDC/LDC1612.h"
 
 
 //////////////////////////////////////////////////////////////
@@ -86,20 +86,20 @@ char LCD[20];
 uint8_t arr[4] = {1,4,8,16};
 uint16_t offset_arr[4] = {0,0,0,0};
 
-uint16_t ldc[11];
+uint32_t ldc[11];
 uint8_t index;
 #define LDC_LENGTH	11
 #define UNIT_CURR	(MAX_CURR-MIN_CURR)/(LDC_LENGTH-1)
 
-uint16_t ldc_data;						//Sensor data
-float distance;						//Object Distance
+uint32_t ldc_data;						//Sensor data
+float distance;							//Object Distance
 float current;							//Output Current
 float percent;							//output percent
 
 uint16_t position;
 uint8_t lcd_contract;
 uint8_t reloadFlag;
-uint16_t config, divider, settlecount, rcount, error_conf, mux_conf, i_drive, status, offset, gain, debugPage;
+uint16_t config, divider, settlecount, rcount, error_conf, mux_conf, i_drive, status, offset, /*gain,*/ debugPage;
 
 //////////////////////////////////////////////////////////////
 //              *******Functions*******                     //
@@ -225,11 +225,11 @@ void System_Mode_Check(){
 void Read_Eeprom(){
 	uint8_t i;
 	for(i=0 ; i< LDC_LENGTH; i++){
-		ldc[i] = eeprom_read_word((uint16_t*)((i+1)*5));
+		ldc[i] = eeprom_read_dword((uint32_t*)((i+1)*5));
 	}
 	lcd_contract = eeprom_read_byte((uint8_t*)((LDC_LENGTH+1)*5));
 	offset = eeprom_read_word((uint16_t*)((LDC_LENGTH+3)*5));
-	gain = eeprom_read_word((uint16_t*)((LDC_LENGTH+2)*5));
+	//gain = eeprom_read_word((uint16_t*)((LDC_LENGTH+2)*5));
 }
 
 //전류 출력(3.8~21mA)
@@ -251,18 +251,23 @@ void AD5421_Output(float CurrValue){
 }
 
 //주파수 값 읽기
-uint16_t Read_LDC(){
-	uint16_t tmp;
+uint32_t Read_LDC(){
+	uint32_t tmp = 0x00000000;
 
-	//LDC 값을 읽어온다.
-	tmp = Read_Data(DATA_CH0);
+	if((Get_Status()&CH0_UNREAD_CONV) == CH0_UNREAD_CONV) {
+	
+		//LDC 값을 읽어온다.
+		tmp |= Read_Data(DATA_CH0_MSB);
+		tmp = (tmp << 16);
+		tmp |= Read_Data(DATA_CH0_LSB);
 
-	//오류가 없을 경우에만 데이터 저장.
-	if((tmp&0xF000) == 0)  ldc_data = tmp;
+		//오류가 없을 경우에만 데이터 저장.
+		if((tmp&0xF0000000) == 0) ldc_data = tmp >> 8;
+	}
 	
 #ifdef DATA_DEBUG
-	if(opMode == DP_MODE){
-		sprintf(LCD,"DATA: %04x(%04x)",tmp, Get_Status());
+	if(opMode == DP_MODE || opMode == SET_MODE){
+		sprintf(LCD,"DATA: %08lX",ldc_data);
 		GLCD_GoTo(16, 5);
 		GLCD_WriteString5x7(LCD);
 	}
@@ -271,7 +276,7 @@ uint16_t Read_LDC(){
 }
 
 //주파수를 가지고 거리값 계산 
-float Cal_Distance(uint16_t ldc_d){
+float Cal_Distance(uint32_t ldc_d){
 	float dst = 0.0f, m = 0.0f;
 	float y1, y2, x1, x2;
 	uint8_t i;
@@ -299,7 +304,7 @@ float Cal_Distance(uint16_t ldc_d){
 }
 
 //주파수를 받아서 전류값계산 
-float CUR_Output(uint16_t ldc_d){
+float CUR_Output(uint32_t ldc_d){
 	float cur = 0.0f, m = 0.0f;
 	float x1, x2, y1, y2;
 
@@ -343,19 +348,19 @@ void Dsp_Distance(float dis){
 	LCD_DefaultScreen("INDUCTIVE SENSING", "SETTING","", "",  "UNIT");
 
 	if (Display_Unit == 0) {	// mm
-		sprintf(LCD, "%2.2f", dis);	
+		sprintf(LCD, "%4.2F", dis);	
 		GLCD_GoTo(106, 4);
 		GLCD_WriteString5x7(" mm ");
 	} else if (Display_Unit == 1) {	// mil
-		sprintf(LCD, "%2.1f", dis/0.0254f);
+		sprintf(LCD, "%4.1F", dis/0.0254f);
 		GLCD_GoTo(106, 4);
 		GLCD_WriteString5x7("mil");
 	} else if (Display_Unit == 2) {	// Percent
-		sprintf(LCD, "%2.1f", percent);	
+		sprintf(LCD, "%4.1F", percent);	
 		GLCD_GoTo(106, 4);
 		GLCD_WriteString5x7(" %  ");
 	} else if (Display_Unit == 3) {	// mA
-		sprintf(LCD, "%2.2f", current);
+		sprintf(LCD, "%4.2F", current);
 		GLCD_GoTo(106, 4);
 		GLCD_WriteString5x7(" mA ");
 	}
@@ -366,17 +371,17 @@ void Dsp_Distance(float dis){
 //세팅 화면을 보여줌.
 void Dsp_Offset_Gain(){
 	
-	LCD_DefaultScreen("OFFSET&GAIN SET", "", "1", "2", "NEXT");
+	LCD_DefaultScreen("OFFSET&GAIN SET", "", "1", "", "NEXT");
 
 	sprintf(LCD, "1. OFFSET : %04x", Get_Offset(CH0));
 	GLCD_GoTo(12, 2);
 	GLCD_WriteString5x7(LCD);
 
-	sprintf(LCD, "2. GAIN : %04x", Get_Gain());
-	GLCD_GoTo(12, 3);
-	GLCD_WriteString5x7(LCD);
+	//sprintf(LCD, "2. GAIN : %04x", Get_Gain());
+	//GLCD_GoTo(12, 3);
+	//GLCD_WriteString5x7(LCD);
 
-	sprintf(LCD, "READ DATA : %04x", ldc_data);
+	sprintf(LCD, "DATA : %08lX", ldc_data);
 	GLCD_GoTo(12, 5);
 	GLCD_WriteString5x7(LCD);
 }
@@ -398,11 +403,11 @@ void Dsp_Offset(){
 		}
 	}
 
-	sprintf(LCD, "CUR OFFSET : %04x", Get_Offset(CH0));
+	sprintf(LCD, "CUR OFFSET : %04X", Get_Offset(CH0));
 	GLCD_GoTo(12, 3);
 	GLCD_WriteString5x7(LCD);
 
-	sprintf(LCD, "READ DATA : %04x", ldc_data);
+	sprintf(LCD, "DATA : %08lX", ldc_data);
 	GLCD_GoTo(12, 4);
 	GLCD_WriteString5x7(LCD);
 }
@@ -457,9 +462,9 @@ void Dsp_Debugging(){
 		error_conf = Get_Error_Config();
 		mux_conf = Get_MUX();
 		i_drive	= Get_IDreive(CH0);
-		ldc_data= Read_Data(DATA_CH0);
+		//ldc_data= Read_Data(DATA_CH0);
 		status = Get_Status();
-		gain = Get_Gain();
+		//gain = Get_Gain();
 		offset = Get_Offset(CH0);
 		reloadFlag = FALSE;
 	}
@@ -468,58 +473,58 @@ void Dsp_Debugging(){
 	
 	switch(debugPage){
 		case 0:
-			sprintf(LCD, "CONFIG: %04x", config);
+			sprintf(LCD, "CONFIG: %04X", config);
 			GLCD_GoTo(12, 2);
 			GLCD_WriteString5x7(LCD);
 	
-			sprintf(LCD, "DIVIDER: %04x", divider);
+			sprintf(LCD, "DIVIDER: %04X", divider);
 			GLCD_GoTo(12, 3);
 			GLCD_WriteString5x7(LCD);
 
-			sprintf(LCD, "SETTLECnt: %04x", settlecount);
+			sprintf(LCD, "SETTLECnt: %04X", settlecount);
 			GLCD_GoTo(12, 4);
 			GLCD_WriteString5x7(LCD);
 
-			sprintf(LCD, "RCnt: %04x", rcount);
+			sprintf(LCD, "RCnt: %04X", rcount);
 			GLCD_GoTo(12, 5);
 			GLCD_WriteString5x7(LCD);
 			break;
 		case 1:
-			sprintf(LCD, "ERRORConf: %04x", error_conf);
+			sprintf(LCD, "ERRORConf: %04X", error_conf);
 			GLCD_GoTo(12, 2);
 			GLCD_WriteString5x7(LCD);
 	
-			sprintf(LCD, "MUX: %04x", mux_conf);
+			sprintf(LCD, "MUX: %04X", mux_conf);
 			GLCD_GoTo(12, 3);
 			GLCD_WriteString5x7(LCD);
 
-			sprintf(LCD, "IDRIVE: %04x", i_drive);
+			sprintf(LCD, "IDRIVE: %04X", i_drive);
 			GLCD_GoTo(12, 4);
 			GLCD_WriteString5x7(LCD);
 
-			sprintf(LCD, "fREQ: %04x", ldc_data);
+			sprintf(LCD, "fREQ: %08lX", ldc_data);
 			GLCD_GoTo(12, 5);
 			GLCD_WriteString5x7(LCD);
 			break;
 
 		case 2:
-			sprintf(LCD, "STATUS: %04x", status);
+			sprintf(LCD, "STATUS: %04X", status);
 			GLCD_GoTo(12, 2);
 			GLCD_WriteString5x7(LCD);
 	
-			sprintf(LCD, "OFFSET: %04x", offset);
+			sprintf(LCD, "OFFSET: %04X", offset);
 			GLCD_GoTo(12, 3);
 			GLCD_WriteString5x7(LCD);
 
-			sprintf(LCD, "GAIN: %04x", gain);
-			GLCD_GoTo(12, 4);
-			GLCD_WriteString5x7(LCD);
+			//sprintf(LCD, "GAIN: %04X", gain);
+			//GLCD_GoTo(12, 4);
+			//GLCD_WriteString5x7(LCD);
 			break;
 
 		case 3:
 		for(i = 0; i<LDC_LENGTH ; i++){
-			sprintf(LCD, "%04x",ldc[i]);
-			GLCD_GoTo(16 + (40*(i%3)), 2 + (i/3));
+			sprintf(LCD, "%6lX",ldc[i]&0xFFFFFF);
+			GLCD_GoTo(10 + (40*(i%3)), 2 + (i/3));
 			GLCD_WriteString5x7(LCD);
 		}
 			break;
@@ -532,7 +537,7 @@ void Dsp_Debugging(){
 //버튼 값을 확인하여 그에 맞는 기능을 수행
 void CHK_Button(){
 	uint8_t btn, i;
-	uint16_t tmp;
+	uint16_t tmp = 0;
 
 	btn = SW_IN;
 #ifdef KEY_TEST
@@ -547,9 +552,9 @@ void CHK_Button(){
 				GLCD_ClearScreen();
 			}
 			else if(opMode == SET_MODE){
-				eeprom_update_word((uint16_t*)((position+1)*5), ldc_data);
-				sprintf(LCD, "%02d mm (%04x) saved!",position, ldc_data);
-				GLCD_GoTo(12, 5);
+				eeprom_update_dword((uint32_t*)((position+1)*5), ldc_data);
+				sprintf(LCD, "%02dmm(%08lX)saved!",position, ldc_data);
+				GLCD_GoTo(12, 4);
 				GLCD_WriteString5x7(LCD);
 				if(position < LDC_LENGTH -1 ) position++;
 			}
@@ -558,12 +563,12 @@ void CHK_Button(){
 				GLCD_ClearScreen();
 			}
 			else if(opMode == GAIN_MODE){
-				Gain_Setting(position<<9);
-				gain = Get_Gain();
-				eeprom_update_word((uint16_t*)((LDC_LENGTH+2)*5), gain);
-				sprintf(LCD, "GAIN %04x SAVE!",gain);
-				GLCD_GoTo(12, 5);
-				GLCD_WriteString5x7(LCD);
+				//Gain_Setting(position<<9);
+				//gain = Get_Gain();
+				//eeprom_update_word((uint16_t*)((LDC_LENGTH+2)*5), gain);
+				//sprintf(LCD, "GAIN %04X SAVE!",gain);
+				//GLCD_GoTo(12, 5);
+				//GLCD_WriteString5x7(LCD);
 
 			}
 			else if (opMode == OFFSET_MODE){
@@ -573,7 +578,7 @@ void CHK_Button(){
 				Offset_Setting(CH0,tmp);
 				offset = Get_Offset(CH0);
 				eeprom_update_word((uint16_t*)((LDC_LENGTH+3)*5), offset);
-				sprintf(LCD, "OFFSET %04x SAVE!",offset);
+				sprintf(LCD, "OFFSET %04X SAVE!",offset);
 				GLCD_GoTo(12, 5);
 				GLCD_WriteString5x7(LCD);
 			}
@@ -661,9 +666,9 @@ void CHK_Button(){
 				}
 			}
 			else if(opMode == OFFSET_GAIN_MODE){
-				opMode = GAIN_MODE;
-				position = 0;
-				GLCD_ClearScreen();
+				//opMode = GAIN_MODE;
+				//position = 0;
+				//GLCD_ClearScreen();
 			}
 			else if(opMode == GAIN_MODE){
 				if(position < 3 ) position++;
@@ -684,7 +689,7 @@ void CHK_Button(){
 				offset_arr[3] = 0x0000;
 				Offset_Setting(CH0,offset);
 				eeprom_update_word((uint16_t*)((LDC_LENGTH+2)*5), offset);
-				sprintf(LCD, "Offset(%04x) INIT!", offset);
+				sprintf(LCD, "Offset(%04X) INIT!", offset);
 				GLCD_GoTo(12, 5);
 				GLCD_WriteString5x7(LCD);
 			}
@@ -718,7 +723,7 @@ int main(){
 	Read_Eeprom();						// Read EEPROM
 	System_Mode_Check();
 	AD5421_Init();						// AD5421 Initialize
-	LDC_Init(offset, gain);				// LDC1312 Initialize
+	LDC_Init(offset);				// LDC1312 Initialize
 	AD5421_Output(3.8f);
 
 	opMode = DP_MODE;					//Operation Mode
@@ -769,11 +774,11 @@ ISR(INT0_vect){
 		_delay_ms(10);
 		CLEARBIT(PORTC,PC2);
 		_delay_ms(10);
-		LDC_Init(offset,gain);
+		LDC_Init(offset);
 	}
 #ifdef INT_DEBUG
 	if(opMode == DP_MODE){
-		sprintf(LCD,"ERROR: %04x",tmp);
+		sprintf(LCD,"ERROR: %04X",tmp);
 		GLCD_GoTo(16, 5);
 		GLCD_WriteString5x7(LCD);
 	}

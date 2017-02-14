@@ -1,5 +1,5 @@
-#ifndef __LDC1312_H__
-#define __LDC1312_H__
+#ifndef __LDC1612_H__
+#define __LDC1612_H__
 
 #include <avr/io.h>
 #include <stdint.h>
@@ -8,26 +8,30 @@
 #include "../I2C/i2c.h"
 
 //Register Map
-#define DATA_CH0				0x00				//CH0 변환결과와 에러상태
-#define DATA_CH1				0x02				//CH1 변환결과와 에러상태
-#define DATA_CH2				0x04				//CH2 변환결과와 에러상태	(LDC1314 only)
-#define DATA_CH3				0x06				//CH3 변환결과와 에러상태	(LDC1314 only)
+#define DATA_CH0_MSB			0x00				//CH0_MSB 변환결과와 에러상태
+#define DATA_CH0_LSB			0x01				//CH0_LSB 변환결과
+#define DATA_CH1_MSB			0x02				//CH1 변환결과와 에러상?
+#define DATA_CH1_LSB			0x03				//CH1_LSB 변환결과
+#define DATA_CH2_MSB			0x04				//CH2 변환결과와 에러상태	(LDC1614 only)
+#define DATA_CH2_LSB			0x05				//CH2_LSB 변환결과
+#define DATA_CH3_MSB			0x06				//CH3 변환결과와 에러상태	(LDC1614 only)
+#define DATA_CH3_LSB			0x07				//CH3_LSB 변환결과
 #define RCOUNT_CH0				0x08				//CH0 참조 카운터 설정  
 #define RCOUNT_CH1				0x09				//CH1 참조 카운터 설정  
-#define RCOUNT_CH2				0x0A				//CH2 참조 카운터 설정  		(LDC1314 only)
-#define RCOUNT_CH3				0x0B				//CH3 참조 카운터 설정  		(LDC1314 only)
+#define RCOUNT_CH2				0x0A				//CH2 참조 카운터 설정  		(LDC1614 only)
+#define RCOUNT_CH3				0x0B				//CH3 참조 카운터 설정  		(LDC1614 only)
 #define OFFSET_CH0				0x0C				//CH0 오프셋 값 설정 
 #define OFFSET_CH1				0x0D				//CH1 오프셋 값 설정 
-#define OFFSET_CH2				0x0E				//CH2 오프셋 값 설정 			(LDC1314 only)
-#define OFFSET_CH3				0x0F				//CH3 오프셋 값 설정 			(LDC1314 only)
+#define OFFSET_CH2				0x0E				//CH2 오프셋 값 설정 			(LDC1614 only)
+#define OFFSET_CH3				0x0F				//CH3 오프셋 값 설정 			(LDC1614 only)
 #define SETTLECOUNT_CH0			0x10				//CH0 안정화 참조 카운터 
 #define SETTLECOUNT_CH1			0x11				//CH1 안정화 참조 카운터 
-#define SETTLECOUNT_CH2			0x12				//CH2 안정화 참조 카운터 	(LDC1314 only)
-#define SETTLECOUNT_CH3			0x13				//CH3 안정화 참조 카운터 	(LDC1314 only)
+#define SETTLECOUNT_CH2			0x12				//CH2 안정화 참조 카운터 	(LDC1614 only)
+#define SETTLECOUNT_CH3			0x13				//CH3 안정화 참조 카운터 	(LDC1614 only)
 #define CLOCK_DEVIDERS_CH0		0x14				//CH0 레퍼런스와 센서의클럭 분배 설정 
 #define CLOCK_DEVIDERS_CH1		0x15				//CH1 레퍼런스와 센서의클럭 분배 설정 
-#define CLOCK_DEVIDERS_CH2		0x16				//CH2 레퍼런스와 센서의클럭 분배 설정 (LDC1314 only)
-#define CLOCK_DEVIDERS_CH3		0x17				//CH3 레퍼런스와 센서의클럭 분배 설정 (LDC1314 only)
+#define CLOCK_DEVIDERS_CH2		0x16				//CH2 레퍼런스와 센서의클럭 분배 설정 (LDC1614 only)
+#define CLOCK_DEVIDERS_CH3		0x17				//CH3 레퍼런스와 센서의클럭 분배 설정 (LDC1614 only)
 #define	STATUS					0x18				//디바이스 상태 보고 
 #define ERROR_CONFIG			0x19				//디바이스 오류 보고 설정 
 #define CONFIG					0x1A				//변환 설정
@@ -141,14 +145,16 @@
 #define SENSOR_ACTIVATE_LOW		(0x0001 << 11)
 #define SENSOR_ACTIVATE_FULL	(0x0000 << 11)
 
-#define AUTO_AMP_DIS			(0x0001 << 10)		//자동 진폭 보정 활성화(활성화(0), 비활성화(1))
+#define AUTO_AMP				(0x0001 << 10)		//자동 진폭 보정 활성화(활성화(0), 비활성화(1))
+#define AUTO_AMP_DIS			(0x0001 << 10)		
 #define AUTO_AMP_EN				(0x0000 << 10)
 
 #define REF_CLK_SRC				(0x0001 << 9)		//참조 주파수 클럭 선택(내부(0), 외부(1))
 #define REF_CLK_SRC_EXT			(0x0001 << 9)
 #define REF_CLK_SRC_IN			(0x0000 << 9)
 
-#define INTB_DIS				(0x0001 << 7)		//인터럽트 활성화(활성화(0), 비활성화(1))
+#define INTB					(0x0001 << 7)		//인터럽트 활성화(활성화(0), 비활성화(1))
+#define INTB_DIS				(0x0001 << 7)		
 #define INTB_EN					(0x0000 << 7)
 
 #define HIGH_CURRENT_DRV		(0x0001 << 6)		//고 전류 센서 구동(일반(0), 고전류(1))
@@ -168,6 +174,7 @@
 #define DEGHITCH_1M				(0x0001 << 0)
 #define DEGHITCH_3R3M			(0x0004 << 0)
 #define DEGHITCH_10M			(0x0005 << 0)
+#define DEGHITCH_33M			(0x0007 << 0)
 
 
 //RESET_DEV Register (0x1C)
@@ -186,7 +193,7 @@
 #define MANUFACTURERID			(0x5449 << 0)
 
 //DEVICE_ID Register (0x7F)
-#define DEVICEID				(0x3054 << 0)
+#define DEVICEID				(0x3055 << 0)
 
 
 #define LDC_SD_H				(PORTC |= 0x04)
@@ -210,7 +217,7 @@
 #define OFFSET_POINT				0xD8EF
 
 
-void LDC_Init(uint16_t offset, uint16_t gain);
+void LDC_Init(uint16_t offset);
 void Set_Config(uint16_t conf);
 uint16_t Get_Config();
 uint16_t Get_Status();
