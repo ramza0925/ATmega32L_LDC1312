@@ -1,0 +1,216 @@
+PCB Net List Errors Report - LDC_HW_REV001.sch - Fri Feb 24 10:55:19 2017
+--------------------------------------------------------------------------
+Design to Library Part Consistency Check
+----------------------------------------
+No Library consistency checking errors.
+
+Single/Zero Pin Net Warnings
+----------------------------
+No single or zero pin nets.
+
+Schematic Connectivity Errors
+-----------------------------
+
+Dangling Connections with a Net Name
+
+\RESET
+MCU          X6400  Y7250 
+MCU          X15400 Y6550 
+
+BOOT_MODE
+MCU          X6400  Y6450 
+MCU          X15400 Y6850 
+
+BTN_DOWN
+MCU          X6300  Y1550 
+MCU          X10950 Y5850 
+
+BTN_ENTER
+MCU          X6300  Y1450 
+MCU          X10950 Y6300 
+
+BTN_NEXT
+MCU          X2450  Y1550 
+MCU          X10950 Y6150 
+
+BTN_UP
+MCU          X2450  Y1450 
+MCU          X10950 Y6000 
+
+CURRENT_IN
+MCU          X6400  Y5150 
+MCU          X5300  Y9200 
+
+DAC_OUT
+MCU          X4400  Y8500 
+MCU          X6400  Y4150 
+
+GLCD_\CS
+MCU          X3200  Y1950 
+MCU          X10950 Y5600 
+
+GLCD_\RES
+MCU          X5700  Y1950 
+MCU          X10950 Y5450 
+
+GLCD_A0
+MCU          X3200  Y1850 
+MCU          X10950 Y5300 
+
+GLCD_SCL
+MCU          X5700  Y1850 
+MCU          X10950 Y5150 
+
+GLCD_SI
+MCU          X3200  Y1750 
+MCU          X10950 Y5000 
+
+LDC_INTB
+MCU          X11950 Y3850 
+MCU          X10950 Y6450 
+
+LDC_SCL
+MCU          X11950 Y4050 
+MCU          X10950 Y4250 
+
+LDC_SD
+MCU          X11950 Y3750 
+MCU          X10950 Y4550 
+
+LDC_SDA
+MCU          X11950 Y3950 
+MCU          X10950 Y4100 
+
+MODE0
+MCU          X4000  Y5700 
+MCU          X10950 Y4850 
+
+MODE1
+MCU          X4000  Y5600 
+MCU          X10950 Y4700 
+
+REF_OUT
+MCU          X6400  Y5300 
+MCU          X5300  Y9450 
+
+RXD
+MCU          X10950 Y6750 
+MCU          X13500 Y6750 
+
+TXD
+MCU          X10950 Y6600 
+MCU          X13500 Y6650 
+
+Power or Ground Symbols used with wrong Net Name
+
+AVDD
+MCU          X15400 Y9250  - Power  Symbol used for net: +5V
+MCU          X8800  Y8250  - Power  Symbol used for net: +5V
+
+DVDD
+MCU          X14400 Y9250  - Power  Symbol used for net: +5V
+MCU          X13450 Y5300  - Power  Symbol used for net: +5V
+MCU          X12550 Y4950  - Power  Symbol used for net: +5V
+MCU          X3350  Y6550  - Power  Symbol used for net: +5V
+MCU          X6450  Y3050  - Power  Symbol used for net: +5V
+MCU          X4250  Y3350  - Power  Symbol used for net: +5V
+MCU          X13500 Y7200  - Power  Symbol used for net: +5V
+MCU          X8400  Y8250  - Power  Symbol used for net: +5V
+
+N24V
+MCU          X12400 Y8300  - Power  Symbol used for net: +5V
+MCU          X2000  Y8300  - Power  Symbol used for net: +5V
+
+P24V
+MCU          X12400 Y9250  - Power  Symbol used for net: +5V
+MCU          X3400  Y8900  - Power  Symbol used for net: +5V
+
+Subnets with Missing Off-Page Reference
+
+\RESET
+MCU          X7400  Y6900  - Pin: U2.1
+MCU          X14500 Y6550  - Pin: J1.5
+
+BOOT_MODE
+MCU          X7400  Y6750  - Pin: U2.3
+MCU          X14500 Y6850  - Pin: J1.8
+
+BTN_DOWN
+MCU          X4450  Y2450  - Pin: AR2.4
+MCU          X10200 Y5850  - Pin: U2.36
+
+BTN_ENTER
+MCU          X4350  Y2450  - Pin: AR2.3
+MCU          X10200 Y6300  - Pin: U2.33
+
+BTN_NEXT
+MCU          X4250  Y2450  - Pin: AR2.2
+MCU          X10200 Y6150  - Pin: U2.34
+
+BTN_UP
+MCU          X4150  Y2450  - Pin: AR2.1
+MCU          X10200 Y6000  - Pin: U2.35
+
+CURRENT_IN
+MCU          X7400  Y5150  - Pin: U2.26
+MCU          X2400  Y9150  - Pin: R2.2
+
+DAC_OUT
+MCU          X3700  Y8500  - Pin: Q1.1
+MCU          X7400  Y4150  - Pin: U2.19
+
+GLCD_\CS
+MCU          X4000  Y1950  - Pin: J6.1
+MCU          X10200 Y5600  - Pin: U2.38
+
+GLCD_\RES
+MCU          X5300  Y1950  - Pin: R4.2
+MCU          X10200 Y5450  - Pin: U2.39
+
+GLCD_A0
+MCU          X4000  Y1850  - Pin: J6.2
+MCU          X10200 Y5300  - Pin: U2.40
+
+GLCD_SCL
+MCU          X4700  Y1850  - Pin: J6.11
+MCU          X10200 Y5150  - Pin: U2.41
+
+GLCD_SI
+MCU          X4000  Y1750  - Pin: J6.3
+MCU          X10200 Y5000  - Pin: U2.42
+
+LDC_INTB
+MCU          X12850 Y3850  - Pin: U3.5
+MCU          X10200 Y6450  - Pin: U2.32
+
+LDC_SCL
+MCU          X12550 Y4200  - Pin: R8.1
+MCU          X10200 Y4250  - Pin: U2.46
+
+LDC_SD
+MCU          X12850 Y3750  - Pin: U3.6
+MCU          X10200 Y4550  - Pin: U2.45
+
+LDC_SDA
+MCU          X12400 Y4200  - Pin: R7.1
+MCU          X10200 Y4100  - Pin: U2.2
+
+MODE0
+MCU          X3350  Y5500  - Pin: S3.1
+MCU          X10200 Y4850  - Pin: U2.43
+
+MODE1
+MCU          X3500  Y5500  - Pin: S3.3
+MCU          X10200 Y4700  - Pin: U2.44
+
+REF_OUT
+MCU          X7400  Y5300  - Pin: U2.25
+MCU          X4300  Y9450  - Pin: R1.2
+
+RXD
+MCU          X10200 Y6750  - Pin: U2.30
+MCU          X13800 Y6750  - Pin: J1.2
+
+TXD
+MCU          X10200 Y6600  - Pin: U2.31
+MCU          X13800 Y6650  - Pin: J1.3

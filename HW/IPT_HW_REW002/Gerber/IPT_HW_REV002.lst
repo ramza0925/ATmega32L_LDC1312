@@ -1,0 +1,22 @@
+
+
+No  Name                  Plotter                Plot Type             Levels
+--  ----                  -------                ---------             ------
+ 1  TOP                   Photo-Plotter          Routing                1 
+ 2  BOTTOM                Photo-Plotter          Routing                2 
+ 3  OUTLINE               Photo-Plotter          Custom                
+ 4  Silk_Top              Photo-Plotter          Silkscreen Top         1 26 
+ 5  Silk_Bottom           Photo-Plotter          Silkscreen Top         2 29 
+ 6  Sold_Top              Photo-Plotter          Solder Mask            1 21 
+ 7  Sold_Bottom           Photo-Plotter          Solder Mask            2 28 
+ 8  Mask_Top              Photo-Plotter          Paste Mask             1 23 
+ 9  Mask_Bottom           Photo-Plotter          Paste Mask             2 22 
+10  Drill_Draw            Photo-Plotter          Drill Drawing          1 24 
+11  NC_Drill              NC Drill               Plated Drill           1 
+12  CheckBoard_Top        Windows Driver         Custom                 1 26 
+13  CheckBoard_Bottom     Windows Driver         Custom                 2 29 
+14  Bottom_Mount          Windows Driver         Custom                 2 30 
+15  Top_Mount             Windows Driver         Custom                27 
+
+
+

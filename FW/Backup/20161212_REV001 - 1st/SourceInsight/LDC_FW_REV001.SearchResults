@@ -1,0 +1,45 @@
+---- opMode Matches (45 in 0 files) ----
+LDC_FW.c (d:\001_works\...\20161212_rev001):	opMode = DP_MODE;					//Operation Mode
+LDC_FW.c (d:\001_works\...\20161212_rev001):			if(opMode == DP_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):			else if(opMode == OFFSET_GAIN_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):			else if(opMode == SET_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):			else if(opMode == DEBUG_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):			else if(opMode == OFFSET_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):			else if(opMode == GAIN_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):	if(opMode == DP_MODE || opMode == SET_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):	if(opMode != DEBUG_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):	if(opMode != DEBUG_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):			if(opMode == DP_MODE) {
+LDC_FW.c (d:\001_works\...\20161212_rev001):				opMode = OFFSET_GAIN_MODE;
+LDC_FW.c (d:\001_works\...\20161212_rev001):			else if(opMode == SET_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):			else if(opMode == DEBUG_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):			else if(opMode == GAIN_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):			else if (opMode == OFFSET_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):			if(opMode == DP_MODE) {
+LDC_FW.c (d:\001_works\...\20161212_rev001):			else if(opMode == SET_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):				opMode = DP_MODE;
+LDC_FW.c (d:\001_works\...\20161212_rev001):			else if(opMode == OFFSET_GAIN_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):				opMode = SET_MODE;
+LDC_FW.c (d:\001_works\...\20161212_rev001):			else if(opMode == DEBUG_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):				opMode = DP_MODE;
+LDC_FW.c (d:\001_works\...\20161212_rev001):			else if(opMode == GAIN_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):				opMode = OFFSET_GAIN_MODE;
+LDC_FW.c (d:\001_works\...\20161212_rev001):			else if(opMode == OFFSET_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):				opMode = OFFSET_GAIN_MODE;
+LDC_FW.c (d:\001_works\...\20161212_rev001):			if(opMode == SET_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):			else if(opMode == DP_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):			else if(opMode == DEBUG_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):			else if(opMode == OFFSET_GAIN_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):				opMode = OFFSET_MODE;
+LDC_FW.c (d:\001_works\...\20161212_rev001):			else if(opMode == GAIN_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):			else if(opMode == OFFSET_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):			if(opMode == SET_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):			else if(opMode == DP_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):			else if(opMode == DEBUG_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):			else if(opMode == OFFSET_GAIN_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):				//opMode = GAIN_MODE;
+LDC_FW.c (d:\001_works\...\20161212_rev001):			else if(opMode == GAIN_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):			else if(opMode == OFFSET_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):			if(opMode == OFFSET_GAIN_MODE){
+LDC_FW.c (d:\001_works\...\20161212_rev001):			opMode = DEBUG_MODE;
+LDC_FW.h (d:\001_works\...\20161212_rev001):uint8_t opMode;

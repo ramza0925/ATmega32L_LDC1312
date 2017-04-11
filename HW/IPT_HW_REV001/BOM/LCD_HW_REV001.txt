@@ -1,0 +1,26 @@
+LDC_HW_REV001 Partlist									2017-02-27
+Item	Reference	Qty	Part Name	Value	Description	TYPE1	TYPE2	Vendor	Vendor PN
+1	S1 S2	2							
+2	R1 R2	2		100K§Ù	Resitor	Resistor	SMD		
+3	R4	1		10K§Ù	Resitor	Resistor	SMD		
+4	R5 R6	2		20k§Ù	Resitor	Resistor	SMD		
+5	R3	1		47§Ù	Resitor	Resistor	SMD		
+6	R7 R8	2		4R7K§Ù	Resitor	Resistor	SMD		
+7	AR2	1		47K		Array Resistor	SMD		
+9	J1	1	-	-	"CONNECTOR, 4X2P"	CONNECTOR	DIP	-	-
+10	J6	1	-	-	"CONNECTOR, 6X2P"	CONNECTOR	DIP	-	-
+11	U2	1	ADuCM360BCPZ	ADuCM360BCPZ	"MCU, ADuCM360BCPZ,"	IC	SMD	Analog Device	ADuCM360BCPZ
+12	L1 L2 L3	3	BMB2A1000LN2	1000Z	"Ferrite bead, 0r4, 1000r@100MHz, 300mA, 0805"	Ferrite Bead	SMD	Tyco	BMB2A1000LN2
+13	C4 C5 C6	3	CAP	100nF	Capacitor	Capacitor	SMD		
+14	C11 C12	2	CAP	100pF	Capacitor	Capacitor	SMD		
+15	C1 C2	2	CAP	10uF	Capacitor	Capacitor	SMD		
+16	C10	1	CAP	1uF	Capacitor	Capacitor	SMD		
+17	C3	1	CAP	4.7nF/50V	Capacitor	Capacitor	SMD		
+18	C7 C8 C9	3	CAP	470nF	Capacitor	Capacitor	SMD		
+19	J2 J3 J4 J5	4	CONNECTOR_2P_HANLIM		"Connector, 2P,"	CONNECTOR	DIP		
+20	D3	1	FLZ4V7A	FLZ4V7A	"Diode Zener, 4.7V, 0.5W, 0.19uA@1V, SOD-80"	SMD	Zener Diode	Fairchild	FLZ4V7A
+21	S3	1	KHS-22C	KHS-22C	"SWITCH, 2SW, KHS22C"	SWITCH	DIP	ÇÑ±¹¿ÀÅ¹½º	KHS-22C
+22	Q1	1	KTD1624	KTD1624	"Transistor, NPN  type"	Transistor	SMD	KEC	KTD1624
+23	U3	1	LDC1612	LDC1612	"LDC, LDC1612, 2CH, 24Bit, Inductive Sensing"	IC	SMD	TEXAS_INSTRUMENTS	LDC1612
+24	U1	1	LP2950ACDT-3.3RG	3.3V	"Regulator, 3.3V output, 4.3~30V input"	Regulator	DIP	On semiconductor	LP2950ACDT-3.3RG
+25	D1	1	M107		Diode	DIODE	SMD		

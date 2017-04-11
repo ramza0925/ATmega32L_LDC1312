@@ -1,0 +1,77 @@
+*
+*
+G04 PADS 9.3 Build Number: 433611 generated Gerber (RS-274-X) file*
+G04 PC Version=2.1*
+*
+%IN "LDC_HW_REV002_Simple2.p"*%
+*
+%MOIN*%
+*
+%FSLAX35Y35*%
+*
+*
+*
+*
+G04 PC Standard Apertures*
+*
+*
+G04 Thermal Relief Aperture macro.*
+%AMTER*
+1,1,$1,0,0*
+1,0,$1-$2,0,0*
+21,0,$3,$4,0,0,45*
+21,0,$3,$4,0,0,135*
+%
+*
+*
+G04 Annular Aperture macro.*
+%AMANN*
+1,1,$1,0,0*
+1,0,$2,0,0*
+%
+*
+*
+G04 Odd Aperture macro.*
+%AMODD*
+1,1,$1,0,0*
+1,0,$1-0.005,0,0*
+%
+*
+*
+G04 PC Custom Aperture Macros*
+*
+*
+*
+*
+*
+*
+G04 PC Aperture Table*
+*
+%ADD010C,0.001*%
+%ADD038C,0.00394*%
+*
+*
+*
+*
+G04 PC Circuitry*
+G04 Layer Name LDC_HW_REV002_Simple2.p - circuitry*
+%LPD*%
+*
+*
+G04 PC Custom Flashes*
+G04 Layer Name LDC_HW_REV002_Simple2.p - flashes*
+%LPD*%
+*
+*
+G04 PC Circuitry*
+G04 Layer Name LDC_HW_REV002_Simple2.p - circuitry*
+%LPD*%
+*
+G54D10*
+G54D38*
+G01X478346Y393701D02*
+G75*
+G03X478346I-84645J0D01*
+G74*
+G01X0Y0D02*
+M02*

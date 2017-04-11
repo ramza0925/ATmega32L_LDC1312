@@ -1,0 +1,6 @@
+---- GLCD_GoTo(12, 3) Matches (5 in 2 files) ----
+LDC1612.c (d:\001_works\001_working\20161129_inductive_sensing\fw\20161212_rev001\inc\ldc):	GLCD_GoTo(12, 3);
+Menu.c (d:\001_works\001_working\20161129_inductive_sensing\fw\20161212_rev001\inc\menu):	GLCD_GoTo(12, 3);
+Menu.c (d:\001_works\001_working\20161129_inductive_sensing\fw\20161212_rev001\inc\menu):			GLCD_GoTo(12, 3);
+Menu.c (d:\001_works\001_working\20161129_inductive_sensing\fw\20161212_rev001\inc\menu):			GLCD_GoTo(12, 3);
+Menu.c (d:\001_works\001_working\20161129_inductive_sensing\fw\20161212_rev001\inc\menu):			GLCD_GoTo(12, 3);

@@ -1,0 +1,553 @@
+###############################################################################
+#
+# IAR ELF Linker V7.50.2.10312/W32 for ARM                15/Mar/2017  18:18:11
+# Copyright 2007-2015 IAR Systems AB.
+#
+#    Output file  =  
+#        D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20161212_REV001\IAR\Debug\Exe\LDC_FW_REV001.out
+#    Map file     =  
+#        D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20161212_REV001\IAR\Debug\List\LDC_FW_REV001.map
+#    Command line =  
+#        D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20161212_REV001\IAR\Debug\Obj\AdcLib.o
+#        D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20161212_REV001\IAR\Debug\Obj\ClkLib.o
+#        D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20161212_REV001\IAR\Debug\Obj\DacLib.o
+#        D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20161212_REV001\IAR\Debug\Obj\Delay.o
+#        D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20161212_REV001\IAR\Debug\Obj\DioLib.o
+#        D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20161212_REV001\IAR\Debug\Obj\FeeLib.o
+#        D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20161212_REV001\IAR\Debug\Obj\Flash.o
+#        D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20161212_REV001\IAR\Debug\Obj\GptLib.o
+#        D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20161212_REV001\IAR\Debug\Obj\graphic.o
+#        D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20161212_REV001\IAR\Debug\Obj\I2cLib.o
+#        D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20161212_REV001\IAR\Debug\Obj\IntLib.o
+#        D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20161212_REV001\IAR\Debug\Obj\LDC1612.o
+#        D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20161212_REV001\IAR\Debug\Obj\LDC_FW.o
+#        D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20161212_REV001\IAR\Debug\Obj\Menu.o
+#        D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20161212_REV001\IAR\Debug\Obj\SPLC501C.o
+#        D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20161212_REV001\IAR\Debug\Obj\startup_ADuCM360.o
+#        D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20161212_REV001\IAR\Debug\Obj\UrtLib.o
+#        D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20161212_REV001\IAR\Debug\Obj\WdtLib.o
+#        -o
+#        D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20161212_REV001\IAR\Debug\Exe\LDC_FW_REV001.out
+#        --map
+#        D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20161212_REV001\IAR\Debug\List\LDC_FW_REV001.map
+#        --config "C:\Program Files (x86)\IAR Systems\Embedded Workbench
+#        7.3\arm\config\linker\AnalogDevices\ADuCM360.icf" --semihosting
+#        --entry __iar_program_start --vfe
+#
+###############################################################################
+
+*******************************************************************************
+*** RUNTIME MODEL ATTRIBUTES
+***
+
+CppFlavor       = *
+__SystemLibrary = DLib
+
+
+*******************************************************************************
+*** PLACEMENT SUMMARY
+***
+
+"A1":  place at 0x00000000 { ro section .intvec };
+"P1":  place in [from 0x00000000 to 0x0001ffff] { ro };
+"P2":  place in [from 0x20000000 to 0x20001fff] { rw, block CSTACK, block HEAP };
+
+  Section            Kind        Address    Size  Object
+  -------            ----        -------    ----  ------
+"A1":                                       0xe0
+  .intvec            ro code  0x00000000    0xe0  startup_ADuCM360.o [1]
+                            - 0x000000e0    0xe0
+
+"P1":                                     0x4a18
+  .text              ro code  0x000000e0   0xd94  LDC_FW.o [1]
+  .text              ro code  0x00000e74    0x88  Delay.o [1]
+  .text              ro code  0x00000efc    0xe4  AdcLib.o [1]
+  .text              ro code  0x00000fe0   0x420  LDC1612.o [1]
+  .text              ro code  0x00001400   0x6bc  Menu.o [1]
+  .text              ro code  0x00001abc    0x4e  FltToDbl.o [4]
+  .text              ro code  0x00001b0a     0xa  xsprout.o [3]
+  .text              ro code  0x00001b14    0x20  WdtLib.o [1]
+  .text              ro code  0x00001b34    0x60  ClkLib.o [1]
+  .text              ro code  0x00001b94    0x2c  DioLib.o [1]
+  .text              ro code  0x00001bc0    0x54  Flash.o [1]
+  .text              ro code  0x00001c14    0x74  FeeLib.o [1]
+  .text              ro code  0x00001c88   0x3d0  SPLC501C.o [1]
+  .text              ro code  0x00002058    0x3c  DacLib.o [1]
+  .text              ro code  0x00002094    0x1e  I32ToFlt.o [4]
+  .rodata            const    0x000020b2     0x1  graphic.o [1]
+  .text              ro code  0x000020b4    0x84  FltAdd.o [4]
+  .text              ro code  0x00002138    0xe6  FltSub.o [4]
+  .text              ro code  0x00002220    0xfc  FltDiv.o [4]
+  .text              ro code  0x0000231c    0xd8  FltMul.o [4]
+  .text              ro code  0x000023f4    0x24  FltToU32.o [4]
+  .text              ro code  0x00002418    0x34  sprintf.o [3]
+  .text              ro code  0x0000244c   0x132  I64DivMod.o [5]
+  .text              ro code  0x00002580    0x2c  GptLib.o [1]
+  .text              ro code  0x000025ac    0x9c  graphic.o [1]
+  .text              ro code  0x00002648   0xbfa  xprintflarge_nomb.o [3]
+  .text              ro code  0x00003244     0x2  I64DivZer.o [5]
+  .text              ro code  0x00003248    0x16  strchr.o [5]
+  .text              ro code  0x00003260    0x36  strlen.o [5]
+  .text              ro code  0x00003298    0x58  memchr.o [5]
+  .text              ro code  0x000032f0    0x76  ABImemcpy_unaligned.o [5]
+  .text              ro code  0x00003366    0x42  xdnorm.o [4]
+  .text              ro code  0x000033a8    0x2e  DblCmpLe.o [4]
+  .text              ro code  0x000033d8   0x1a2  DblMul.o [4]
+  .text              ro code  0x0000357c   0x256  DblDiv.o [4]
+  .text              ro code  0x000037d4    0x2c  DblToI32.o [4]
+  .text              ro code  0x00003800    0x1c  I32ToDbl.o [4]
+  .text              ro code  0x0000381c   0x180  DblSub.o [4]
+  .text              ro code  0x0000399c     0xe  div.o [3]
+  .text              ro code  0x000039ac    0xd4  DblAdd.o [4]
+  .rodata            const    0x00003a80   0x780  SPLC501C.o [1]
+  .rodata            const    0x00004200   0x5e4  SPLC501C.o [1]
+  .text              ro code  0x000047e4    0x40  zero_init3.o [5]
+  .text              ro code  0x00004824    0x2c  copy_init3.o [5]
+  .text              ro code  0x00004850    0x28  data_init.o [5]
+  .iar.init_table    const    0x00004878    0x24  - Linker created -
+  .text              ro code  0x0000489c    0x1a  cmain.o [5]
+  .text              ro code  0x000048b6     0x4  low_level_init.o [3]
+  .text              ro code  0x000048ba     0x4  exit.o [3]
+  .text              ro code  0x000048c0     0xa  cexit.o [5]
+  .text              ro code  0x000048cc    0x14  exit.o [6]
+  .rodata            const    0x000048e0    0x14  LDC_FW.o [1]
+  .rodata            const    0x000048f4    0x14  LDC_FW.o [1]
+  .rodata            const    0x00004908    0x14  Menu.o [1]
+  .rodata            const    0x0000491c    0x14  Menu.o [1]
+  .rodata            const    0x00004930    0x14  Menu.o [1]
+  .rodata            const    0x00004944    0x10  Menu.o [1]
+  .rodata            const    0x00004954    0x10  Menu.o [1]
+  .rodata            const    0x00004964    0x10  Menu.o [1]
+  .rodata            const    0x00004974    0x10  Menu.o [1]
+  .rodata            const    0x00004984    0x10  Menu.o [1]
+  .rodata            const    0x00004994    0x10  Menu.o [1]
+  .rodata            const    0x000049a4    0x10  Menu.o [1]
+  .rodata            const    0x000049b4    0x10  Menu.o [1]
+  .rodata            const    0x000049c4    0x10  Menu.o [1]
+  .rodata            const    0x000049d4    0x10  Menu.o [1]
+  .rodata            const    0x000049e4    0x10  Menu.o [1]
+  .rodata            const    0x000049f4    0x10  Menu.o [1]
+  .rodata            const    0x00004a04    0x10  Menu.o [1]
+  .rodata            const    0x00004a14     0xc  LDC_FW.o [1]
+  .rodata            const    0x00004a20     0xc  LDC_FW.o [1]
+  .rodata            const    0x00004a2c     0xc  Menu.o [1]
+  .rodata            const    0x00004a38     0xc  Menu.o [1]
+  .rodata            const    0x00004a44     0xc  Menu.o [1]
+  .rodata            const    0x00004a50     0xc  Menu.o [1]
+  .rodata            const    0x00004a5c     0xc  Menu.o [1]
+  .rodata            const    0x00004a68     0xc  Menu.o [1]
+  .text              ro code  0x00004a74     0xc  cstartup_M.o [5]
+  .rodata            const    0x00004a80     0x8  Menu.o [1]
+  .rodata            const    0x00004a88     0x8  Menu.o [1]
+  .rodata            const    0x00004a90     0x8  Menu.o [1]
+  .rodata            const    0x00004a98     0x8  Menu.o [1]
+  .rodata            const    0x00004aa0     0x8  Menu.o [1]
+  .rodata            const    0x00004aa8     0x8  Menu.o [1]
+  .rodata            const    0x00004ab0     0x8  Menu.o [1]
+  .rodata            const    0x00004ab8     0x8  Menu.o [1]
+  .rodata            const    0x00004ac0     0x8  Menu.o [1]
+  .rodata            const    0x00004ac8     0x8  Menu.o [1]
+  .rodata            const    0x00004ad0     0x8  Menu.o [1]
+  .rodata            const    0x00004ad8     0x8  Menu.o [1]
+  .rodata            const    0x00004ae0     0x8  Menu.o [1]
+  .rodata            const    0x00004ae8     0x8  Menu.o [1]
+  .text              ro code  0x00004af0     0x4  startup_ADuCM360.o [1]
+  Initializer bytes  const    0x00004af4     0x4  <for P2-1>
+  .rodata            const    0x00004af8     0x0  zero_init3.o [5]
+  .rodata            const    0x00004af8     0x0  copy_init3.o [5]
+                            - 0x00004af8  0x4a18
+
+"P2", part 1 of 3:                           0x4
+  P2-1                        0x20000000     0x4  <Init block>
+    .data            inited   0x20000000     0x4  LDC_FW.o [1]
+                            - 0x20000004     0x4
+
+"P2", part 2 of 3:                         0x400
+  CSTACK                      0x20000008   0x400  <Block>
+    CSTACK           uninit   0x20000008   0x400  <Block tail>
+                            - 0x20000408   0x400
+
+"P2", part 3 of 3:                         0x154
+  .bss               zero     0x20000408    0x78  LDC_FW.o [1]
+  .bss               zero     0x20000480    0x30  LDC_FW.o [1]
+  .bss               zero     0x200004b0    0x2c  Menu.o [1]
+  .bss               zero     0x200004dc    0x14  Menu.o [1]
+  .bss               zero     0x200004f0     0x8  LDC_FW.o [1]
+  .bss               zero     0x200004f8     0x8  Menu.o [1]
+  .bss               zero     0x20000500     0x4  Delay.o [1]
+  .bss               zero     0x20000504     0x4  LDC_FW.o [1]
+  .bss               zero     0x20000508     0x4  LDC_FW.o [1]
+  .bss               zero     0x2000050c     0x4  LDC_FW.o [1]
+  .bss               zero     0x20000510     0x4  LDC_FW.o [1]
+  .bss               zero     0x20000514     0x4  LDC_FW.o [1]
+  .bss               zero     0x20000518     0x4  LDC_FW.o [1]
+  .bss               zero     0x2000051c     0x4  LDC_FW.o [1]
+  .bss               zero     0x20000520     0x4  LDC_FW.o [1]
+  .bss               zero     0x20000524     0x4  LDC_FW.o [1]
+  .bss               zero     0x20000528     0x4  Menu.o [1]
+  .bss               zero     0x2000052c     0x4  Menu.o [1]
+  .bss               zero     0x20000530     0x4  Menu.o [1]
+  .bss               zero     0x20000534     0x4  Menu.o [1]
+  .bss               zero     0x20000538     0x2  Menu.o [1]
+  .bss               zero     0x2000053a     0x2  Menu.o [1]
+  .bss               zero     0x2000053c     0x2  Menu.o [1]
+  .bss               zero     0x2000053e     0x2  Menu.o [1]
+  .bss               zero     0x20000540     0x2  Menu.o [1]
+  .bss               zero     0x20000542     0x2  Menu.o [1]
+  .bss               zero     0x20000544     0x2  Menu.o [1]
+  .bss               zero     0x20000546     0x2  Menu.o [1]
+  .bss               zero     0x20000548     0x2  Menu.o [1]
+  .bss               zero     0x2000054a     0x2  Menu.o [1]
+  .bss               zero     0x2000054c     0x2  Menu.o [1]
+  .bss               zero     0x2000054e     0x1  LDC_FW.o [1]
+  .bss               zero     0x2000054f     0x1  LDC_FW.o [1]
+  .bss               zero     0x20000550     0x1  LDC_FW.o [1]
+  .bss               zero     0x20000551     0x1  LDC_FW.o [1]
+  .bss               zero     0x20000552     0x1  LDC_FW.o [1]
+  .bss               zero     0x20000553     0x1  LDC_FW.o [1]
+  .bss               zero     0x20000554     0x1  LDC_FW.o [1]
+  .bss               zero     0x20000555     0x1  Menu.o [1]
+  .bss               zero     0x20000556     0x1  Menu.o [1]
+  .bss               zero     0x20000557     0x1  SPLC501C.o [1]
+  .bss               zero     0x20000558     0x1  SPLC501C.o [1]
+                            - 0x20000559   0x151
+
+
+*******************************************************************************
+*** INIT TABLE
+***
+
+          Address     Size
+          -------     ----
+Zero (__iar_zero_init3)
+    1 destination range, total size 0x151:
+          0x20000408  0x151
+
+Copy (__iar_copy_init3)
+    1 source range, total size 0x4:
+          0x00004af4    0x4
+    1 destination range, total size 0x4:
+          0x20000000    0x4
+
+
+
+*******************************************************************************
+*** MODULE SUMMARY
+***
+
+    Module                 ro code  ro data  rw data
+    ------                 -------  -------  -------
+D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20161212_REV001\IAR\Debug\Obj: [1]
+    AdcLib.o                   228
+    ClkLib.o                    96
+    DacLib.o                    60
+    Delay.o                    136                 4
+    DioLib.o                    44
+    FeeLib.o                   116
+    Flash.o                     84
+    GptLib.o                    44
+    LDC1612.o                1 056
+    LDC_FW.o                 3 476       68      223
+    Menu.o                   1 724      452      112
+    SPLC501C.o                 976    3 428        2
+    WdtLib.o                    32
+    graphic.o                  156        1
+    startup_ADuCM360.o         228
+    ------------------------------------------------
+    Total:                   8 456    3 949      341
+
+command line: [2]
+    ------------------------------------------------
+    Total:
+
+dl7M_tln.a: [3]
+    div.o                       14
+    exit.o                       4
+    low_level_init.o             4
+    sprintf.o                   52
+    xprintflarge_nomb.o      3 066
+    xsprout.o                   10
+    ------------------------------------------------
+    Total:                   3 150
+
+m7M_tl.a: [4]
+    DblAdd.o                   212
+    DblCmpLe.o                  46
+    DblDiv.o                   598
+    DblMul.o                   418
+    DblSub.o                   384
+    DblToI32.o                  44
+    FltAdd.o                   132
+    FltDiv.o                   252
+    FltMul.o                   216
+    FltSub.o                   230
+    FltToDbl.o                  78
+    FltToU32.o                  36
+    I32ToDbl.o                  28
+    I32ToFlt.o                  30
+    xdnorm.o                    66
+    ------------------------------------------------
+    Total:                   2 770
+
+rt7M_tl.a: [5]
+    ABImemcpy_unaligned.o      118
+    I64DivMod.o                306
+    I64DivZer.o                  2
+    cexit.o                     10
+    cmain.o                     26
+    copy_init3.o                44
+    cstartup_M.o                12
+    data_init.o                 40
+    memchr.o                    88
+    strchr.o                    22
+    strlen.o                    54
+    zero_init3.o                64
+    ------------------------------------------------
+    Total:                     786
+
+shb_l.a: [6]
+    exit.o                      20
+    ------------------------------------------------
+    Total:                      20
+
+    Gaps                        25
+    Linker created                       36    1 024
+----------------------------------------------------
+    Grand Total:            15 207    3 985    1 365
+
+
+*******************************************************************************
+*** ENTRY LIST
+***
+
+Entry                      Address   Size  Type      Object
+-----                      -------   ----  ----      ------
+.iar.init_table$$Base   0x00004878          --   Gb  - Linker created -
+.iar.init_table$$Limit  0x0000489c          --   Gb  - Linker created -
+?main                   0x0000489d         Code  Gb  cmain.o [5]
+ACK_Check               0x00001229   0x46  Code  Gb  LDC1612.o [1]
+ACK_Out                 0x0000126f   0x1a  Code  Gb  LDC1612.o [1]
+ADC0INIT                0x000005cb   0x54  Code  Gb  LDC_FW.o [1]
+ADC0_Int_Handler        0x00000ce1   0xe2  Code  Gb  LDC_FW.o [1]
+AdcBuf                  0x00000f81   0x26  Code  Gb  AdcLib.o [1]
+AdcFlt                  0x00000f2d   0x22  Code  Gb  AdcLib.o [1]
+AdcGo                   0x00000f4f   0x2a  Code  Gb  AdcLib.o [1]
+AdcMski                 0x00000fc5    0xa  Code  Gb  AdcLib.o [1]
+AdcPin                  0x00000fa7   0x1e  Code  Gb  AdcLib.o [1]
+AdcRd                   0x00000f7d    0x4  Code  Gb  AdcLib.o [1]
+AdcRng                  0x00000efd   0x30  Code  Gb  AdcLib.o [1]
+AdcSta                  0x00000f79    0x4  Code  Gb  AdcLib.o [1]
+Bit_Write               0x000011eb   0x3e  Code  Gb  LDC1612.o [1]
+CHK_Button              0x00000829  0x4a0  Code  Gb  LDC_FW.o [1]
+CSTACK$$Base            0x20000008          --   Gb  - Linker created -
+CSTACK$$Limit           0x20000408          --   Gb  - Linker created -
+CUR_Output              0x0000076f   0xb6  Code  Gb  LDC_FW.o [1]
+Cal_Current             0x00000733   0x3c  Code  Gb  LDC_FW.o [1]
+Cal_Distance            0x00000671   0xae  Code  Gb  LDC_FW.o [1]
+Cal_Percent             0x0000071f   0x14  Code  Gb  LDC_FW.o [1]
+ClkCfg                  0x00001b35   0x20  Code  Gb  ClkLib.o [1]
+ClkDis                  0x00001b81    0x8  Code  Gb  ClkLib.o [1]
+ClkSel                  0x00001b55   0x2c  Code  Gb  ClkLib.o [1]
+Clock_Initialize        0x0000031d   0x28  Code  Gb  LDC_FW.o [1]
+DACINIT                 0x0000061f   0x1c  Code  Gb  LDC_FW.o [1]
+DIO_INIT                0x00001197   0x14  Code  Gb  LDC1612.o [1]
+DIO_Initialize          0x00000345   0x6a  Code  Gb  LDC_FW.o [1]
+DacCfg                  0x00002063   0x2a  Code  Gb  DacLib.o [1]
+DacWr                   0x00002059    0xa  Code  Gb  DacLib.o [1]
+DioCfg                  0x00001b95    0x6  Code  Gb  DioLib.o [1]
+DioClr                  0x00001bb7    0xa  Code  Gb  DioLib.o [1]
+DioOce                  0x00001ba7    0x6  Code  Gb  DioLib.o [1]
+DioOen                  0x00001b9b    0x6  Code  Gb  DioLib.o [1]
+DioPul                  0x00001ba1    0x6  Code  Gb  DioLib.o [1]
+DioRd                   0x00001bad    0x4  Code  Gb  DioLib.o [1]
+DioSet                  0x00001bb1    0x6  Code  Gb  DioLib.o [1]
+DisableIRQ              0x000003af   0x10  Code  Gb  LDC_FW.o [1]
+Display_Unit            0x20000555    0x1  Data  Gb  Menu.o [1]
+Dsp_20mA_Setting        0x0000176d   0x62  Code  Gb  Menu.o [1]
+Dsp_4mA_Setting         0x000016fd   0x62  Code  Gb  Menu.o [1]
+Dsp_Contrast            0x0000155f   0x3a  Code  Gb  Menu.o [1]
+Dsp_Debugging           0x000017dd  0x1e0  Code  Gb  Menu.o [1]
+Dsp_Distance            0x0000146b   0xf4  Code  Gb  Menu.o [1]
+Dsp_Offset              0x00001599   0xca  Code  Gb  Menu.o [1]
+Dsp_Setting             0x00001669   0x8e  Code  Gb  Menu.o [1]
+EnableIRQ               0x000003bf   0x10  Code  Gb  LDC_FW.o [1]
+End_Condition           0x000011cb   0x20  Code  Gb  LDC1612.o [1]
+FeePErs                 0x00001c15   0x32  Code  Gb  FeeLib.o [1]
+FeeSta                  0x00001c69    0x8  Code  Gb  FeeLib.o [1]
+FeeWrEn                 0x00001c47   0x22  Code  Gb  FeeLib.o [1]
+FlashData               0x20000408   0x78  Data  Gb  LDC_FW.o [1]
+GLCD_ClearScreen        0x00001e2f   0x30  Code  Gb  SPLC501C.o [1]
+GLCD_GoTo               0x00001dfd   0x32  Code  Gb  SPLC501C.o [1]
+GLCD_Initialize         0x00001d95   0x68  Code  Gb  SPLC501C.o [1]
+GLCD_InitializePorts    0x00001c89   0x4c  Code  Gb  SPLC501C.o [1]
+GLCD_InvWriteChar5x7    0x00001e93   0x36  Code  Gb  SPLC501C.o [1]
+GLCD_InvWriteString5x7  0x00001edf   0x16  Code  Gb  SPLC501C.o [1]
+GLCD_Line               0x000025ad   0x96  Code  Gb  graphic.o [1]
+GLCD_SetPixel           0x00001ffb   0x5e  Code  Gb  SPLC501C.o [1]
+GLCD_WriteChar19x24     0x00001ef5   0xd4  Code  Gb  SPLC501C.o [1]
+GLCD_WriteChar5x7       0x00001e5f   0x34  Code  Gb  SPLC501C.o [1]
+GLCD_WriteCommand       0x00001d31   0x64  Code  Gb  SPLC501C.o [1]
+GLCD_WriteData          0x00001cd5   0x5c  Code  Gb  SPLC501C.o [1]
+GLCD_WriteString19x24   0x00001fe5   0x16  Code  Gb  SPLC501C.o [1]
+GLCD_WriteString5x7     0x00001ec9   0x16  Code  Gb  SPLC501C.o [1]
+GP_Tmr0_Int_Handler     0x00000edb   0x18  Code  Gb  Delay.o [1]
+Get_Config              0x00001083    0xa  Code  Gb  LDC1612.o [1]
+Get_Divider             0x000010c3    0xc  Code  Gb  LDC1612.o [1]
+Get_Error_Config        0x00001099    0xa  Code  Gb  LDC1612.o [1]
+Get_IDreive             0x00001127    0xc  Code  Gb  LDC1612.o [1]
+Get_MUX                 0x00001143    0xa  Code  Gb  LDC1612.o [1]
+Get_Offset              0x00001161    0xc  Code  Gb  LDC1612.o [1]
+Get_RCount              0x00001103    0xc  Code  Gb  LDC1612.o [1]
+Get_SettleCount         0x000010e3    0xc  Code  Gb  LDC1612.o [1]
+Get_Status              0x000010a3    0xa  Code  Gb  LDC1612.o [1]
+Get_System_Mode         0x000005b7   0x14  Code  Gb  LDC_FW.o [1]
+GptCfg                  0x00002581   0x20  Code  Gb  GptLib.o [1]
+GptClrInt               0x000025a7    0x6  Code  Gb  GptLib.o [1]
+GptLd                   0x000025a1    0x6  Code  Gb  GptLib.o [1]
+LCD                     0x200004dc   0x14  Data  Gb  Menu.o [1]
+LCD_DefaultScreen       0x00001401   0x6a  Code  Gb  Menu.o [1]
+LDC_Init                0x0000100b   0x68  Code  Gb  LDC1612.o [1]
+LoadInt                 0x00002bc1   0x6e  Code  Lc  xprintflarge_nomb.o [3]
+NVIC_DisableIRQ         0x000000f7   0x16  Code  Lc  LDC_FW.o [1]
+NVIC_EnableIRQ          0x00000e75   0x14  Code  Lc  Delay.o [1]
+NVIC_EnableIRQ          0x000000e1   0x16  Code  Lc  LDC_FW.o [1]
+NVIC_SystemReset        0x0000010d   0x22  Code  Lc  LDC_FW.o [1]
+Offset_Setting          0x0000116d   0x2a  Code  Gb  LDC1612.o [1]
+ReadFromFlash           0x00001bfb   0x1a  Code  Gb  Flash.o [1]
+Read_Data               0x000012ed  0x10c  Code  Gb  LDC1612.o [1]
+Read_Eeprom             0x000003cf   0xbe  Code  Gb  LDC_FW.o [1]
+Read_LDC                0x0000063d   0x34  Code  Gb  LDC_FW.o [1]
+Region$$Table$$Base     0x00004878          --   Gb  - Linker created -
+Region$$Table$$Limit    0x0000489c          --   Gb  - Linker created -
+Set_Config              0x00001073   0x10  Code  Gb  LDC1612.o [1]
+Set_Divider             0x000010ad   0x16  Code  Gb  LDC1612.o [1]
+Set_Error_Config        0x0000108d    0xc  Code  Gb  LDC1612.o [1]
+Set_IDrive              0x0000110f   0x18  Code  Gb  LDC1612.o [1]
+Set_MUX                 0x00001133   0x10  Code  Gb  LDC1612.o [1]
+Set_Offset              0x0000114d   0x14  Code  Gb  LDC1612.o [1]
+Set_RCount              0x000010ef   0x14  Code  Gb  LDC1612.o [1]
+Set_SettleCount         0x000010cf   0x14  Code  Gb  LDC1612.o [1]
+SleepMode_Control       0x00000fe1   0x2a  Code  Gb  LDC1612.o [1]
+Start_Condition         0x000011ab   0x20  Code  Gb  LDC1612.o [1]
+System_Mode_Check       0x0000055b   0x5c  Code  Gb  LDC_FW.o [1]
+Timer_Init              0x00000e89   0x20  Code  Gb  Delay.o [1]
+Timer_Start             0x00000ea9    0xa  Code  Gb  Delay.o [1]
+UART_Initialize         0x0000063b    0x2  Code  Gb  LDC_FW.o [1]
+WatchDog_Initialize     0x0000030f    0xe  Code  Gb  LDC_FW.o [1]
+WdtCfg                  0x00001b15   0x1c  Code  Gb  WdtLib.o [1]
+WriteToFlash            0x00001bc1   0x3a  Code  Gb  Flash.o [1]
+Write_Data              0x00001289   0x64  Code  Gb  LDC1612.o [1]
+Write_Eeprom            0x0000048d   0xce  Code  Gb  LDC_FW.o [1]
+_GenldLargeNoMb         0x00002fb5  0x246  Code  Lc  xprintflarge_nomb.o [3]
+_LdtobLargeNoMb         0x00002d35  0x27a  Code  Lc  xprintflarge_nomb.o [3]
+_LitobLargeNoMb         0x00002c2f  0x106  Code  Lc  xprintflarge_nomb.o [3]
+_PrintfLargeNoMb        0x00002649  0x572  Code  Gb  xprintflarge_nomb.o [3]
+_PutcharsLargeNoMb      0x000031fb   0x2e  Code  Lc  xprintflarge_nomb.o [3]
+_SProut                 0x00001b0b    0xa  Code  Gb  xsprout.o [3]
+__aeabi_cdcmple         0x000033a9         Code  Gb  DblCmpLe.o [4]
+__aeabi_d2uiz           0x000037d5         Code  Gb  DblToI32.o [4]
+__aeabi_ddiv            0x0000357d         Code  Gb  DblDiv.o [4]
+__aeabi_dmul            0x000033d9         Code  Gb  DblMul.o [4]
+__aeabi_dsub            0x0000381d         Code  Gb  DblSub.o [4]
+__aeabi_f2d             0x00001abd         Code  Gb  FltToDbl.o [4]
+__aeabi_f2uiz           0x000023f5         Code  Gb  FltToU32.o [4]
+__aeabi_fadd            0x000020b5         Code  Gb  FltAdd.o [4]
+__aeabi_fdiv            0x00002221         Code  Gb  FltDiv.o [4]
+__aeabi_fmul            0x0000231d         Code  Gb  FltMul.o [4]
+__aeabi_fsub            0x00002139         Code  Gb  FltSub.o [4]
+__aeabi_ldiv0           0x00003245         Code  Gb  I64DivZer.o [5]
+__aeabi_ldivmod         0x0000244d         Code  Gb  I64DivMod.o [5]
+__aeabi_ui2d            0x00003801         Code  Gb  I32ToDbl.o [4]
+__aeabi_ui2f            0x00002095         Code  Gb  I32ToFlt.o [4]
+__aeabi_uldivmod        0x00002491         Code  Gb  I64DivMod.o [5]
+__cmain                 0x0000489d         Code  Gb  cmain.o [5]
+__exit                  0x000048cd   0x14  Code  Gb  exit.o [6]
+__iar_Dnorm             0x00003367   0x42  Code  Gb  xdnorm.o [4]
+__iar_Memchr            0x00003299         Code  Gb  memchr.o [5]
+__iar_Strchr            0x00003249         Code  Gb  strchr.o [5]
+__iar_copy_init3        0x00004825   0x2c  Code  Gb  copy_init3.o [5]
+__iar_d2uiz             0x000037e1         Code  Gb  DblToI32.o [4]
+__iar_dadd              0x000039ad         Code  Gb  DblAdd.o [4]
+__iar_data_init3        0x00004851   0x28  Code  Gb  data_init.o [5]
+__iar_dsub              0x00003831         Code  Gb  DblSub.o [4]
+__iar_dsubStart         0x00003843         Code  Gb  DblSub.o [4]
+__iar_fadd              0x000020c5         Code  Gb  FltAdd.o [4]
+__iar_fsub              0x00002149         Code  Gb  FltSub.o [4]
+__iar_fsubStart         0x00002159         Code  Gb  FltSub.o [4]
+__iar_program_start     0x00004a75         Code  Gb  cstartup_M.o [5]
+__iar_ui2d              0x00003805         Code  Gb  I32ToDbl.o [4]
+__iar_ui2f              0x00002099         Code  Gb  I32ToFlt.o [4]
+__iar_unaligned___aeabi_memcpy
+                        0x000032f1         Code  Gb  ABImemcpy_unaligned.o [5]
+__iar_unaligned___aeabi_memcpy4
+                        0x00003311         Code  Gb  ABImemcpy_unaligned.o [5]
+__iar_unaligned___aeabi_memcpy8
+                        0x00003311         Code  Gb  ABImemcpy_unaligned.o [5]
+__iar_zero_init3        0x000047e5   0x40  Code  Gb  zero_init3.o [5]
+__low_level_init        0x000048b7    0x4  Code  Gb  low_level_init.o [3]
+__vector_table          0x00000000         Data  Gb  startup_ADuCM360.o [1]
+_call_main              0x000048a9         Code  Gb  cmain.o [5]
+_exit                   0x000048c1         Code  Gb  cexit.o [5]
+_main                   0x000048b3         Code  Gb  cmain.o [5]
+color                   0x000020b2    0x1  Data  Gb  graphic.o [1]
+config                  0x2000053a    0x2  Data  Gb  Menu.o [1]
+current                 0x20000530    0x4  Data  Gb  Menu.o [1]
+debugPage               0x2000054c    0x2  Data  Gb  Menu.o [1]
+delay_ms                0x00000ecb   0x10  Code  Gb  Delay.o [1]
+delay_us                0x00000eb5   0x16  Code  Gb  Delay.o [1]
+distance                0x2000052c    0x4  Data  Gb  Menu.o [1]
+div                     0x0000399d    0xe  Code  Gb  div.o [3]
+divider                 0x2000053c    0x2  Data  Gb  Menu.o [1]
+dly_cnt                 0x20000500    0x4  Data  Gb  Delay.o [1]
+dpMode                  0x2000054e    0x1  Data  Gb  LDC_FW.o [1]
+error_conf              0x20000542    0x2  Data  Gb  Menu.o [1]
+exit                    0x000048bb    0x4  Code  Gb  exit.o [3]
+fVolts                  0x2000051c    0x4  Data  Gb  LDC_FW.o [1]
+first_start             0x20000520    0x4  Data  Gb  LDC_FW.o [1]
+font19x24               0x00004200  0x5e4  Data  Gb  SPLC501C.o [1]
+font5x7                 0x00003a80  0x780  Data  Lc  SPLC501C.o [1]
+glcd_x                  0x20000557    0x1  Data  Gb  SPLC501C.o [1]
+glcd_y                  0x20000558    0x1  Data  Gb  SPLC501C.o [1]
+i_drive                 0x20000546    0x2  Data  Gb  Menu.o [1]
+index                   0x20000550    0x1  Data  Gb  LDC_FW.o [1]
+lDAC20mAAIN9            0x20000514    0x4  Data  Gb  LDC_FW.o [1]
+lDAC4mAAIN9             0x20000510    0x4  Data  Gb  LDC_FW.o [1]
+lcd_contract            0x20000551    0x1  Data  Gb  LDC_FW.o [1]
+ldc                     0x200004b0   0x2c  Data  Gb  Menu.o [1]
+ldc_data                0x20000528    0x4  Data  Gb  Menu.o [1]
+main                    0x0000012f  0x1e0  Code  Gb  LDC_FW.o [1]
+memchr                  0x00003299         Code  Gb  memchr.o [5]
+mux_conf                0x20000544    0x2  Data  Gb  Menu.o [1]
+offset                  0x2000054a    0x2  Data  Gb  Menu.o [1]
+offset_arr              0x200004f8    0x8  Data  Gb  Menu.o [1]
+percent                 0x20000534    0x4  Data  Gb  Menu.o [1]
+position                0x20000538    0x2  Data  Gb  Menu.o [1]
+rcount                  0x20000540    0x2  Data  Gb  Menu.o [1]
+reloadFlag              0x20000556    0x1  Data  Gb  Menu.o [1]
+settlecount             0x2000053e    0x2  Data  Gb  Menu.o [1]
+sprintf                 0x00002419   0x34  Code  Gb  sprintf.o [3]
+status                  0x20000548    0x2  Data  Gb  Menu.o [1]
+strchr                  0x00003249         Code  Gb  strchr.o [5]
+strlen                  0x00003261         Code  Gb  strlen.o [5]
+sysMode                 0x2000054f    0x1  Data  Gb  LDC_FW.o [1]
+ucADC0Rdy               0x20000552    0x1  Data  Gb  LDC_FW.o [1]
+ucFirstLoop             0x20000553    0x1  Data  Gb  LDC_FW.o [1]
+ul20mAVal               0x2000050c    0x4  Data  Gb  LDC_FW.o [1]
+ul4mAVal                0x20000508    0x4  Data  Gb  LDC_FW.o [1]
+ulADC0DAT               0x20000518    0x4  Data  Gb  LDC_FW.o [1]
+ulDacCode               0x20000504    0x4  Data  Gb  LDC_FW.o [1]
+
+
+[1] = D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20161212_REV001\IAR\Debug\Obj
+[2] = command line
+[3] = dl7M_tln.a
+[4] = m7M_tl.a
+[5] = rt7M_tl.a
+[6] = shb_l.a
+
+  15 207 bytes of readonly  code memory
+   3 985 bytes of readonly  data memory
+   1 365 bytes of readwrite data memory
+
+Errors: none
+Warnings: none

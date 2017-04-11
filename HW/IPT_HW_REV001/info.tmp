@@ -1,0 +1,26 @@
+Item	Qty	Reference	Part Name	Manufacturer	Description
+1	1	U2	ADUCM360_D,ADuCM360		
+2	3	C4-6	C,100nF		Capacitor
+3	2	C11-12	C,100pF		Capacitor
+4	2	C1-2	C,10uF		Capacitor
+5	1	C10	C,1uF		Capacitor
+6	1	C3	C,4.7nF/50V		Capacitor
+7	3	C7-9	C,470nF		Capacitor
+8	4	J2-5	CONN_2P		Connector, 6P,
+9	1	J1	CONN_4X2P,-		CONNECTOR, 6X2P
+10	1	J6	CONN_6X2P,-		CONNECTOR, 6X2P
+11	1	D3	DIODEZ-FLZ4V7A,FLZ4V7A		
+12	1	S3	KHS_22C,KHS-22C		SWITCH, 2SW, KHS22C
+13	1	Q1	KTD1624,KTD1624		Transistor, NPN  type
+14	3	L1-3	L,1000Z		
+15	1	U3	LDC1312,LDC1612		LDC, LDC1312, 2CH, 12Bit, Inductive Sensing
+16	1	U1	LP2950,3.3V		Regulator, 3.3V output, 4.3~30V input, DPAK, Reel(2000EA), -40~125C, PB Free
+17	1	D1	M107		Diode
+18	2	S1-2	MJPT1243		
+19	2	R1-2	R,100K§Ù		Resitor
+20	1	R4	R,10K§Ù		Resitor
+21	2	R5-6	R,20k§Ù		Resitor
+22	1	R3	R,47§Ù		Resitor
+23	2	R7-8	R,4R7K§Ù		Resitor
+24	1	AR2	RP104P,47K		
+25	4	TP1-4	TP		

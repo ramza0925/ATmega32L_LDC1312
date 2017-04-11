@@ -1,0 +1,28 @@
+Item	Qty	Reference	Part Name	Value	Description	TYPE1	TYPE2	Vendor	Vendor PN
+1	1	JP1							
+2	1	S2							
+3	1	X1				HOLE	NC		
+4	4	R2 R5 R8-9		10K§Ù	Resitor	Resistor	SMD		
+5	1	R1		15KF§Ù	Resitor	Resistor	SMD		
+6	2	R6-7		20k§Ù	Resitor	Resistor	SMD		
+7	2	R3-4		4R7K§Ù	Resitor	Resistor	SMD		
+8	1	AR1		47K		Array Resistor	SMD		
+9	1	U1		STM32F103R8T6		IC	SMD		
+10	4	TP1-4				TP	OPEN		
+11	1	J7	-	-	CONNECTOR, 6X2P	CONNECTOR	DIP	-	-
+12	1	J2	3P		Connector, 3P,	CONNECTOR	DIP		
+13	3	L1-3	BMB2A1000LN2	1000Z	Ferrite bead, 0r4, 1000r@100MHz, 300mA, 0805	Ferrite Bead	SMD	Tyco	BMB2A1000LN2
+14	7	C4-5 C7-8 C12-13 C16	CAP	100nF	Capacitor	Capacitor	SMD		
+15	2	C9 C15	CAP	100pF	Capacitor	Capacitor	SMD		
+16	2	C2-3	CAP	10uF	Capacitor	Capacitor	SMD		
+17	1	C14	CAP	1uF	Capacitor	Capacitor	SMD		
+18	1	C6	CAP	22nF	Capacitor	Capacitor	SMD		
+19	1	C1	CAP	4.7nF/50V	Capacitor	Capacitor	SMD		
+20	2	C10-11	CAP	NC	Capacitor	Capacitor	SMD		
+21	4	J1 J3-5	CONNECTOR_2P_HANLIM		Connector, 2P,	CONNECTOR	DIP		
+22	2	J6 J8	CONNECTOR_6P_HANLIM		Connector, 6P,	CONNECTOR	DIP		
+23	1	U3	DAC8750/7750	DAC8750	DAC, 12/16bit programmable current output, 4-20mA current loop, HTSSOP, 24P	IC	SMD	Texas Instruments	DAC8750/7750
+24	1	S1	KHS-22C	KHS-22C	SWITCH, 2SW, KHS22C	SWITCH	DIP	ÇÑ±¹¿ÀÅ¹½º	KHS-22C
+25	1	U2	LDC1612	LDC1612	LDC, LDC1612, 2CH, 24Bit, Inductive Sensing	IC	SMD	TEXAS_INSTRUMENTS	LDC1612
+26	1	REG1	LP2950ACDT-3.3RG	3.3V	Regulator, 3.3V output, 4.3~30V input, DPAK, Reel(2000EA), -40~125C, PB Free	Regulator	SMD	On semiconductor	LP2950ACDT-3.3RG
+27	1	D1	M107		Diode	DIODE	SMD		
