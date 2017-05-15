@@ -2095,10 +2095,55 @@
     </settings>
   </configuration>
   <group>
+    <name>CMSIS</name>
+  </group>
+  <group>
     <name>Inc</name>
+    <file>
+      <name>$PROJ_DIR$\..\Inc\DAC\DACX750.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\Inc\Utils\Delay.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\Inc\GLCD\graphic.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\Inc\HW_Config.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\Inc\LDC\LDC1612.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\Inc\Menu\Menu.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\Inc\GLCD\SPLC501C.c</name>
+    </file>
   </group>
   <group>
     <name>Lib</name>
+    <file>
+      <name>$PROJ_DIR$\..\Libs\STM32F10x_StdPeriph_Driver\src\misc.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\Libs\STM32F10x_StdPeriph_Driver\src\stm32f10x_adc.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\Libs\STM32F10x_StdPeriph_Driver\src\stm32f10x_flash.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\Libs\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\Libs\STM32F10x_StdPeriph_Driver\src\stm32f10x_i2c.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\Libs\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\Libs\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c</name>
+    </file>
   </group>
   <file>
     <name>$PROJ_DIR$\..\Main.c</name>

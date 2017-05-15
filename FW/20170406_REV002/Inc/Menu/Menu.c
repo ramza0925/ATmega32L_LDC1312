@@ -121,38 +121,6 @@ void Dsp_Setting(){
 	}
 }
 
-void Dsp_4mA_Setting(){
-    LCD_DefaultScreen("04mA SETTING", "SAVE", "UP", "DOWN", "NEXT");
-
-    sprintf(LCD, "DAC : %08lX", ul4mAVal);
-	GLCD_GoTo(12, 2);
-	GLCD_WriteString5x7(LCD);
-
-    sprintf(LCD, "ADC : %08lX", lDAC4mAAIN9);
-	GLCD_GoTo(12, 3);
-	GLCD_WriteString5x7(LCD);
-
-    sprintf(LCD, "CUR ADC : %08lX", ulADC0DAT);
-	GLCD_GoTo(12, 4);
-	GLCD_WriteString5x7(LCD);
-}
-
-void Dsp_20mA_Setting(){
-    LCD_DefaultScreen("20mA SETTING", "SAVE", "UP", "DOWN", "NEXT");
-
-    sprintf(LCD, "DAC : %08lX", ul20mAVal);
-	GLCD_GoTo(12, 2);
-	GLCD_WriteString5x7(LCD);
-
-    sprintf(LCD, "ADC : %08lX", lDAC20mAAIN9);
-	GLCD_GoTo(12, 3);
-	GLCD_WriteString5x7(LCD);
-
-    sprintf(LCD, "CUR ADC : %08lX", ulADC0DAT);
-	GLCD_GoTo(12, 4);
-	GLCD_WriteString5x7(LCD);
-}
-
 
 //µð¹ö±ëÈ­¸éÀ» º¸¿©ÁÜ.
 void Dsp_Debugging(){
@@ -218,6 +186,10 @@ void Dsp_Debugging(){
 	
 			sprintf(LCD, "OFFSET: %04X", offset);
 			GLCD_GoTo(12, 3);
+			GLCD_WriteString5x7(LCD);
+
+            sprintf(LCD, "Contra: %04X", lcd_contract);
+			GLCD_GoTo(12, 4);
 			GLCD_WriteString5x7(LCD);
 			break;
 

@@ -1,10 +1,7 @@
 #ifndef __LDC1612_H__
 #define __LDC1612_H__
 
-#include <stdint.h>
-
-#include <ADuCM360.h>
-#include <DioLib.h>
+#include "HW_Config.h"
 
 //Register Map
 #define DATA_CH0_MSB			0x00				//CH0_MSB 변환결과와 에러상태
@@ -194,15 +191,7 @@
 //DEVICE_ID Register (0x7F)
 #define DEVICEID				(0x3055 << 0)
 
-
-#define LDC_SD_H				DioSet(pADI_GP1, 0x80)
-#define LDC_SD_L			    DioClr(pADI_GP1, 0x80)
-#define LDC_SCL_H				DioSet(pADI_GP2, 0x01)
-#define LDC_SCL_L				DioClr(pADI_GP2, 0x01)
-#define LDC_SDA_H				DioSet(pADI_GP2, 0x02)
-#define LDC_SDA_L				DioClr(pADI_GP2, 0x02)
-
-#define LDC_ADDR					(0x2B << 1)
+#define LDC_ADDR					(0x2B<<1)
 
 #define FIN_DIVIDER					0x0002
 #define FREF_DIVIDER				0x0004
@@ -213,6 +202,10 @@
 #define HIGH    1
 #define LOW     0
 
+#define CH0			0
+#define CH1			1
+#define CH2			2
+#define CH3			3
 
 void LDC_Init(uint16_t offset);
 void Set_Config(uint16_t conf);

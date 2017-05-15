@@ -1,16 +1,12 @@
 #include "LDC1612.h"
-#include "../Utils/Delay.h"
-#include "../Variable.h"
+#include "Utils/Delay.h"
 
+//#define LDC_TEST
 
 #ifdef LDC_TEST
-    #include <stdio.h>
-    #include "../GLCD/SPLC501C.h"
-
+    #include "GLCD/SPLC501C.h"
 	char TEST_LCD[20];
 #endif
-
-void DIO_INIT();
 
 void SleepMode_Control(uint16_t mode){
 	uint16_t tmp;
@@ -24,9 +20,10 @@ void SleepMode_Control(uint16_t mode){
 }
 
 void LDC_Init(uint16_t offset){
-
-    DIO_INIT();
-    
+#ifdef LDC_TEST
+    GLCD_GoTo(12, 5);
+	GLCD_WriteString5x7("LDC Init");
+#endif
 	SleepMode_Control(SLEEP_MODE_EN);							//설정 전 슬립모드 시작
 	//채널 및 클럭 설정
 	Set_Config(ACTIVE_CHAN_CH0|RP_OVERRIDE_EN|SENSOR_ACTIVATE_LOW|AUTO_AMP_DIS|REF_CLK_SRC_IN|INTB_EN|HIGH_CURRENT_DRV_DIS);
@@ -158,154 +155,70 @@ void Gain_Setting(uint16_t gain){
 	delay_ms(100);
 }
 
-void DIO_INIT(){
-    LDC_SCL_H;
-    LDC_SDA_H;     
-}
-
-void Start_Condition(){
-    LDC_SDA_L;
-    delay_us(1);
-    LDC_SCL_L;
-    delay_us(1);
-}
-
-void End_Condition(){
-    LDC_SCL_H;
-    delay_us(1);
-    LDC_SDA_H;
-    delay_us(1);
-}
-
-void Bit_Write(uint8_t bit){
-    if(bit) LDC_SDA_H;
-    else LDC_SDA_L;
-    delay_us(100);
-    LDC_SCL_H;
-    delay_us(1);
-    LDC_SCL_L;
-    delay_us(1);
-}
-
-uint8_t ACK_Check(){
-    uint8_t ack_Flag = 0;
-
-    DioOen(pADI_GP2, 0x01);
-    
-    delay_us(100);
-    ack_Flag = DioRd(pADI_GP2)&0x01;
-    LDC_SCL_H;
-    delay_us(1);
-    LDC_SCL_L;
-    delay_us(1);
-    
-    DioOen(pADI_GP2, 0x03);
-    
-    return ack_Flag;
-}
-
-void ACK_Out(){
-    DioOen(pADI_GP2, 0x03);
-    Bit_Write(LOW);
-    DioOen(pADI_GP2, 0x01);
-}
-
-void Write_Data(uint16_t data, uint8_t addr){
-    uint8_t i, j;
-    uint8_t data_arr[4];
-
-    data_arr[0] = LDC_ADDR;
-    data_arr[1] = addr;
-    
-    data_arr[2] = (uint8_t)((data >> 8) & 0x00ff);
-    data_arr[3] = (uint8_t)(data & 0x00ff);
-    
-
+uint16_t Read_Data(uint8_t addr)
+{
 #ifdef LDC_TEST
-    sprintf(TEST_LCD, "Data: %08lX", data);
-	GLCD_GoTo(12, 2);
-	GLCD_WriteString5x7(TEST_LCD);
-
-    sprintf(TEST_LCD, "data_arr[2]: %04x", data_arr[2]);
-	GLCD_GoTo(12, 3);
-	GLCD_WriteString5x7(TEST_LCD);
-
-    sprintf(TEST_LCD, "data_arr[3]: %04x", data_arr[3]);
-	GLCD_GoTo(12, 4);
-	GLCD_WriteString5x7(TEST_LCD);
+    GLCD_GoTo(12, 6);
+	GLCD_WriteString5x7("Read_Data");
 #endif
+    uint8_t i;
+	uint16_t buf = 0x0000;
 
-    Start_Condition();
+    I2C_Cmd(I2C1, DISABLE);          //clear PE
+    I2C_Cmd(I2C1, ENABLE);           //set PE
+    I2C_AcknowledgeConfig(I2C1, ENABLE);
+    
+    I2C_GenerateSTART(I2C1, ENABLE);
+    while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT));
+    I2C_Send7bitAddress(I2C1,LDC_ADDR, I2C_Direction_Transmitter);
+    while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED));
+    I2C_SendData(I2C1, addr);
+    while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_TRANSMITTED));
+    I2C_GenerateSTOP(I2C1, ENABLE);
+    
+    I2C_GenerateSTART(I2C1, ENABLE);
+    while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT));
+    I2C_Send7bitAddress(I2C1,LDC_ADDR, I2C_Direction_Receiver);
+    while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED));
 
-    for(i=0; i < 4; i++){
-        for(j=0 ; j<8 ; j++){
-            if(((data_arr[i]>>(7-j)) & 0x01) == 0x01) Bit_Write(HIGH);
-            else Bit_Write(LOW);
-        }
-        ACK_Check();
-    }
-    End_Condition();
-    delay_us(100);
+    for(i=2 ; i>0 ; i--){
+         while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_RECEIVED));
+		 buf |= (uint16_t)(I2C_ReceiveData(I2C1)<<(8*(i-1)));
+	}
+
+    I2C_AcknowledgeConfig(I2C1, DISABLE);
+	I2C_GenerateSTOP(I2C1, ENABLE);
+	return buf;
 }
 
-uint16_t Read_Data(uint8_t addr){
-    uint8_t i, j;
-    uint8_t byte_buf = 0;
-    uint16_t buf = 0;
-    uint8_t data_arr[2];
-    uint8_t read_addr;
-
-    data_arr[0] = LDC_ADDR;
-    data_arr[1] = addr;
-
-    Start_Condition();
-
-    for(i=0; i < sizeof(data_arr); i++){
-        for(j=0 ; j<8 ; j++){
-            if(((data_arr[i]>>(7-j)) & 0x01) == 0x01)Bit_Write(HIGH);
-            else Bit_Write(LOW);
-        }
-        ACK_Check();
-    }
-
-    End_Condition();
-
-    delay_us(1);
-
-    Start_Condition();
-    
-    read_addr = LDC_ADDR + 1;
-    
-     for(j=0 ; j<8 ; j++){
-        if(((read_addr>>(7-j)) & 0x01) == 0x01) Bit_Write(HIGH);
-        else Bit_Write(LOW);
-     }
-     ACK_Check();
-
-     DioOen(pADI_GP2, 0x01);
-     delay_us(100);
-     for(i=0; i < 2; i++){
-        byte_buf = 0;
-        for(j=0 ; j<8 ; j++){
-            byte_buf |= (uint8_t)(((DioRd(pADI_GP2)>>1)&0x0001)<<(7-j));
-            LDC_SCL_H;
-            delay_us(1);
-            LDC_SCL_L;
-            delay_us(1);
-        }
-        ACK_Out();
-
+void Write_Data(uint16_t data, uint8_t addr)
+{
 #ifdef LDC_TEST
-    sprintf(TEST_LCD, "%d buf is %04x", i+1, byte_buf);
-	GLCD_GoTo(12, 5+i);
-	GLCD_WriteString5x7(TEST_LCD);
+    GLCD_GoTo(12, 6);
+	GLCD_WriteString5x7("Write_Data");
 #endif
-        buf |= (byte_buf<<8*(1-i));
-    }
+    uint8_t byte;
+    uint8_t i;
 
-    DioOen(pADI_GP2, 0x03);
-    End_Condition();
-    delay_us(100);
+    I2C_Cmd(I2C1, DISABLE);          //clear PE
+    I2C_Cmd(I2C1, ENABLE);           //set PE
+    I2C_AcknowledgeConfig(I2C1, ENABLE);
+
+    I2C_GenerateSTART(I2C1, ENABLE);
+    while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT));
+    I2C_Send7bitAddress(I2C1,LDC_ADDR, I2C_Direction_Transmitter);
+    while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED));
+
+    I2C_SendData(I2C1, addr);
+    while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_TRANSMITTING));
+
+    for(i=2 ; i>0 ; i--){
+		byte = (uint8_t)((data >> (8*(i-1)))&0x00ff);
+		I2C_SendData(I2C1, byte);
+        while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_TRANSMITTED));
+	}
+    //while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_TRANSMITTED));
     
-    return buf;
+    I2C_AcknowledgeConfig(I2C1, DISABLE);
+    I2C_GenerateSTOP(I2C1, ENABLE);
 }

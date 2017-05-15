@@ -1,9 +1,8 @@
 #include "SPLC501C.h"
 #include "font5x7.h"
-//#include "font10x16.h"
 #include "font19x24.h"
 
-#include "../Utils/Delay.h"
+#include "Utils\Delay.h"
 
 unsigned char glcd_x, glcd_y;
 
@@ -291,5 +290,3 @@ void GLCD_Bitmap(char * bitmap,unsigned char left, unsigned char top, unsigned c
 //-------------------------------------------------------------------------------------------------
 //
 //-------------------------------------------------------------------------------------------------
-
-		

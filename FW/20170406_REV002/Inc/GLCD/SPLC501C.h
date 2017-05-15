@@ -1,7 +1,8 @@
 #ifndef __SPLC501C_H__
 #define __SPLC501C_H__
 
-#include <DioLib.h>
+#include "HW_Config.h"
+
 
 #define SCREEN_WIDTH 	132
 #define SCREEN_HEIGHT	64
@@ -54,16 +55,16 @@
 #define SPLC501C_PAGE_BLINKING_6	0x40
 #define SPLC501C_PAGE_BLINKING_7	0x80
 
-#define LCD_RST_H	   DioSet(pADI_GP1, 0x02)
-#define LCD_RST_L	   DioClr(pADI_GP1, 0x02)
-#define LCD_A0_H	   DioSet(pADI_GP1, 0x04)
-#define LCD_A0_L	   DioClr(pADI_GP1, 0x04)
-#define LCD_CS1_H	   DioSet(pADI_GP1, 0x01)
-#define LCD_CS1_L	   DioClr(pADI_GP1, 0x01)
-#define LCD_SCL_H	   DioSet(pADI_GP1, 0x08)
-#define LCD_SCL_L	   DioClr(pADI_GP1, 0x08)
-#define LCD_SI_H	   DioSet(pADI_GP1, 0x10)
-#define LCD_SI_L	   DioClr(pADI_GP1, 0x10)
+#define LCD_RST_H	   GPIO_SetBits(GPIOB, GPIO_Pin_12)
+#define LCD_RST_L	   GPIO_ResetBits(GPIOB, GPIO_Pin_12)
+#define LCD_A0_H	   GPIO_SetBits(GPIOB, GPIO_Pin_14)
+#define LCD_A0_L	   GPIO_ResetBits(GPIOB, GPIO_Pin_14)
+#define LCD_CS1_H	   GPIO_SetBits(GPIOB, GPIO_Pin_13)
+#define LCD_CS1_L	   GPIO_ResetBits(GPIOB, GPIO_Pin_13)
+#define LCD_SCL_H	   GPIO_SetBits(GPIOB, GPIO_Pin_10)
+#define LCD_SCL_L	   GPIO_ResetBits(GPIOB, GPIO_Pin_10)
+#define LCD_SI_H	   GPIO_SetBits(GPIOB, GPIO_Pin_11)
+#define LCD_SI_L	   GPIO_ResetBits(GPIOB, GPIO_Pin_11)
 
 void GLCD_GoTo(unsigned char, unsigned char);
 void GLCD_WriteString(char *);
@@ -80,7 +81,5 @@ void GLCD_WriteString19x24(char * string);
 
 void GLCD_SetPixel(int x, int y, int color);
 void GLCD_Bitmap(char * bitmap,unsigned char left, unsigned char top, unsigned char width, unsigned char height);
-
-
 
 #endif

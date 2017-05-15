@@ -4,11 +4,24 @@
 -I
 D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20170406_REV002\IAR\..\Inc
 -I
+D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20170406_REV002\IAR\..\Libs\STM32F10x_StdPeriph_Driver\inc
+-I
+D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20170406_REV002\IAR\..\Libs\CMSIS\CM3\DeviceSupport\ST\STM32F10x
+-I
+C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\CMSIS\Include
+-I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\inc
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\inc\c
 -I
 D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20170406_REV002\Inc
+-I
+D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20170406_REV002\Libs\STM32F10x_StdPeriph_Driver\inc
+-I
+D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20170406_REV002\Libs\CMSIS\CM3\DeviceSupport\ST\STM32F10x
+-I
+C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\CMSIS\Include
+-DUSE_STDPERIPH_DRIVER=1
 -D__CHAR_BITS__=8
 -D__CHAR_MAX__=0xff
 -D__CHAR_MIN__=0
@@ -235,8 +248,8 @@ D:\001_Works\001_Working\20161129_Inductive_Sensing\FW\20170406_REV002\Inc
 -D__EDG_SYSV=0
 -D__EDG_ANSIC=1
 -D__EDG_CPP11_IL_EXTENSIONS_SUPPORTED=1
--D_DLIB_CONFIG_FILE_HEADER_NAME="C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\INC\c\DLib_Config_Normal.h"
--D_DLIB_CONFIG_FILE_STRING="C:\\Program Files (x86)\\IAR Systems\\Embedded Workbench 7.3\\arm\\INC\\c\\DLib_Config_Normal.h"
+-D_DLIB_CONFIG_FILE_HEADER_NAME="C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\INC\c\DLib_Config_Full.h"
+-D_DLIB_CONFIG_FILE_STRING="C:\\Program Files (x86)\\IAR Systems\\Embedded Workbench 7.3\\arm\\INC\\c\\DLib_Config_Full.h"
 -D__VERSION__="IAR ANSI C/C++ Compiler V7.50.2.10312/W32 for ARM"
 -D__CODE_MEMORY_LIST1__()=__CODE_MEM_HELPER1__(__code, 0 )
 -D__CODE_MEMORY_LIST2__(_P1)=__CODE_MEM_HELPER2__(__code, 0 ,  _P1 )

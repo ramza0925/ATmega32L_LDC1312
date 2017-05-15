@@ -1,23 +1,14 @@
 #ifndef _VARIABLE_H_
 #define _VARIABLE_H_
 
-#define CUR_DEBUG
 //#define DATA_DEBUG
-//#define KEY_TEST
-//#define MODE_CHECK
-//#define I2C_CHECK
-//#define TEST
+//#define TEMP_DEBUG
 
 #define TRUE 1
 #define FALSE 0
 
-#define CH0			0
-#define CH1			1
-#define CH2			2
-#define CH3			3
-
-#define HW_REV		0x01
-#define SW_REV		0x01
+#define HW_REV		0x02
+#define SW_REV		0x02
 
 #define MIN_DST		0.0f
 #define MAX_DST		10.0f

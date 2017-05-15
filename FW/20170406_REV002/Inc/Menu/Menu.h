@@ -4,11 +4,11 @@
 #include <stdio.h>
 #include <stdint.h>
 
-#include "..\GLCD\SPLC501C.h"
-#include "..\GLCD\graphic.h"
-#include "..\LDC\LDC1612.h"
+#include "GLCD/SPLC501C.h"
+#include "GLCD/graphic.h"
+#include "LDC/LDC1612.h"
 
-#include "..\Variable.h"
+#include "Variable.h"
 
 enum UNIT{
   MM,
@@ -22,7 +22,5 @@ void Dsp_Offset();
 void Dsp_Contrast();
 void Dsp_Setting();
 void Dsp_Debugging();
-void Dsp_4mA_Setting();
-void Dsp_20mA_Setting();
     
 #endif
