@@ -55,9 +55,6 @@ uint16_t sysMode;
 uint8_t index;                          //배열에서의 위치를 표시하기 위한 변수
 uint8_t lcd_contract;                   //LDC 밝기를 저장하는 변수
 
-
-
-
 //System Mode Switch Check
 uint16_t Get_System_Mode()
 {
@@ -456,5 +453,6 @@ int main()
 			}
 			CHK_Button();
 		}
+        delay_ms(300);
     }
 }

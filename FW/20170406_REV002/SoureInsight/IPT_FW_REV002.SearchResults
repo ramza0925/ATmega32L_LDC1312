@@ -1,3 +1,5 @@
----- BOTH_MODE Matches (2 in 0 files) ----
-Main.c (d:\001_works\...\20170406_rev002):	BOTH_MODE = 0x0000,
-Main.c (d:\001_works\...\20170406_rev002):        case BOTH_MODE:
+---- TEMP_DEBUG Matches (4 in 2 files) ----
+Main.c (d:\001_works\001_working\20161129_inductive_sensing\fw\20170406_rev002):#ifndef TEMP_DEBUG
+Main.c (d:\001_works\001_working\20161129_inductive_sensing\fw\20170406_rev002):#define TEMP_DEBUG
+Main.c (d:\001_works\001_working\20161129_inductive_sensing\fw\20170406_rev002):#ifdef TEMP_DEBUG
+Variable.h (d:\001_works\001_working\20161129_inductive_sensing\fw\20170406_rev002\inc)://#define TEMP_DEBUG

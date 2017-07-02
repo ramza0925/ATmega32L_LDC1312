@@ -2,7 +2,7 @@
 #define _VARIABLE_H_
 
 //#define DATA_DEBUG
-//#define TEMP_DEBUG
+#define TEMP_DEBUG
 
 #define TRUE 1
 #define FALSE 0

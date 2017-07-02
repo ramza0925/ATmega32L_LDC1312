@@ -128,7 +128,7 @@ void DAC_Current_Out(float cur)
     uint16_t tmp;
 
     //tmp = (uint16_t)(((cur/16) - (1/4)) * 65536);                  //4~20mA老 版快
-    tmp = (uint16_t)((cur/(MAX_CURRENT-MIN_CURRENT))*RESOLATION);   //0~20mA老 版快 
+    tmp = (uint16_t)((cur/(MAX_CURRENT-MIN_CURRENT))*RESOLATION);   //0~24mA老 版快 
     Write_DAC_Data(WR_DAC_DATA_REG,tmp);
 }
 

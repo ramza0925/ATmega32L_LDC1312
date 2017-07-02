@@ -1,0 +1,14 @@
+*PADS-ECO-V9.3-METRIC*
+
+*REMARK* -- LDC_HW_REV002_Simple2.pcb -- Thu Jun 29 13:23:47 2017
+
+
+*DELPIN*
+J2.1    P24V
+U4.10    TEMP
+J2.2    TEMP
+J2.3    GND
+
+*DELPART*
+J2 CONN_3P
+*END*
